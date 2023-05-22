@@ -47,7 +47,7 @@ const App=()=> {
     <Route exact path='/cleaningproducts' element ={<Cleaningproducts/>} />
     <Route exact path='/fruits' element ={<Fruits/>} />
     <Route exact path='/staples' element ={<Staples/>} />
-    <Route exact path="*" element ={<Page404/>}/>
+    <Route exact path="*" element ={<Home/>}/>
     </Routes>
     </Router>
     </MyContext.Provider>
