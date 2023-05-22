@@ -1,0 +1,405 @@
+/* _______________________________________________________..-Body-..___________________________________________________*/
+body
+{
+    padding: 0 0;
+    margin: 0 0;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+h5
+{
+    color: white;
+}
+.animatecart
+{
+    transform: rotate(-8deg) scale(1.2);    
+}
+.bgimg
+{
+    height:500px;
+}
+.cartselect
+{
+    outline: 1px solid white;
+    width: 30%;
+    margin-left: 4%;
+}
+#loginselect
+{
+    outline: 1px solid white;
+    display: block;
+    width: 78%;
+    margin-left: 60px;
+  }
+  .display
+  {
+    display: none;
+  }
+  
+/* _______________________________________________________..-Navbar-..___________________________________________________*/
+.cont
+{
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+    margin: 0px;
+    padding: 0px;
+}
+.bar
+{
+    background-color: rgb(68, 184, 76);
+    height: 80px;
+}
+.Title
+{
+    color: white;
+    position: relative;
+    left: 30px;
+}
+.navbuttons
+{
+    background-color:rgb(68, 184, 76);
+    color: rgb(121, 121, 121);
+    border: 0pt solid #a7ff70;
+    border-radius: 10%;
+    padding: 10px 10px;
+}
+.navbuttons:hover
+{
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2), 0 6px 6px 0 rgba(152, 156, 149, 0.19);   
+    background-color: rgba(34, 132, 40, 0.352);
+}
+.navbuttons:focus
+{
+    outline: none;
+}
+.navicon
+{
+    height: 20px;
+    padding-right: 15px;   
+}
+.nbs
+{
+    position: absolute;
+    left: 920px;
+}
+.line1
+{
+    width: 100%;
+    height: 40px;
+    color: white;
+    background-color: white;
+}
+/* _______________________________________________________..-Main section-.._____________________________________________*/
+
+.bannersec
+{
+padding-top: 20px;
+padding-bottom: 20px;
+background-image: url("./accfiles/bg.png");
+padding-right: 20px;
+}
+.banner
+{
+    width: 100%;
+   display: flex;
+   justify-content: center;
+}
+.veggiesbanner
+{
+    height: 480px;
+    width: 1200px; 
+    margin-top: 80px;
+    margin: 5px 0px 10px;
+}
+/* _______________________________________________________..-footer-..___________________________________________________*/
+.footer
+   {
+    background-color: rgb(201, 201, 201);
+    padding: 5%; 
+    margin-top: 10px;
+    }
+   .icongroup
+   {
+    text-align: center;
+    display: block; 
+   }
+   .footerrow
+   {
+    padding: 0 12% 0 12%;
+    display: flex;
+    justify-content: center;
+   }
+   .ficon
+   {
+    padding: 2% 5% 2% 5%;
+   }
+    .suscribe 
+   {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+/* _______________________________________________________..-card-..___________________________________________________*/
+.cardshome
+{
+padding: 20px 0px 0px 50px;
+margin: 0px 0px;
+background-color: rgb(68, 184, 76);
+color: rgb(59, 54, 54);
+}
+.cardimg
+{
+height: 115px;    
+border-radius: 40%;
+padding-bottom: 5px;
+margin-left: 15px;
+}
+.cardimg:hover
+{
+    height: 110px;
+}
+.cardtext
+{
+padding-right: 90px;
+text-align: center;
+text-transform: uppercase;
+color: rgb(209, 244, 187);
+font-weight:500;
+}
+
+.cartsec
+{
+    margin-top: 110px;
+    background-image: url("./accfiles/bg.png");
+    height: 500px;
+    width: 100%;
+}
+.loginsec
+{
+    margin-top: 110px;
+    background-image: url("./accfiles/bg.png");
+    height: 500px;
+    width: 100%;
+}
+/* _______________________________________________________..-vegetables-..___________________________________________________*/
+.productssec
+{
+    margin-top: 100px;
+    background-image: url("./accfiles/bg.png");    
+}
+.vegetablessec
+{
+    margin-top: 100px;
+    background-image: url("./accfiles/bg.png");    
+}
+.cardsproduct
+{
+    background-color: rgba(163, 255, 110, 0.377);  
+    padding-bottom: 50px;  
+}
+.cardtextproduct
+{
+   color: black;
+   text-align: center;
+   font-weight: 600;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   background-color: rgb(235, 255, 226);
+   font-size: small;
+}
+.cardbg
+{
+    height: 250px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 20px;
+}
+.cardimgproduct
+{
+    height: 90px;
+    padding-top: 20px;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.imgdiv
+{
+    margin: 0px;
+    height: 100px;
+    border-radius: 5%;
+    background-color: white;
+}
+.productaddtocart
+{
+    background-color:rgb(241, 255, 244);
+    border-color:rgba(0, 188, 41, 0.707);
+    width: 20%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 3%;
+    min-width: 50px;
+    float: right;
+    margin: 10px 10px 0px 0px;
+    border-radius: 15%;
+    color:rgb(0, 128, 28);
+    font-weight: 600;
+    font-size: small;
+}
+.productaddtocart:hover
+{
+    background-color: #ebfbdd;
+    box-shadow: 2px 2px 2px 2px rgba(132, 134, 132, 0.2), 2px 2px 2px 2px rgba(132, 134, 132, 0.2); 
+}
+.productaddtocart:active, 
+.productaddtocart:focus 
+ {
+     outline: none;
+ }
+.infodev
+{
+    background-color: rgb(255, 255, 255);
+    min-height: 60px;
+    border-radius: 5%;
+    position: relative;
+    bottom: 10px;
+}
+.productprice
+{
+    padding: 15px 0px 0px 15px;
+    font-weight: 500;
+    font-size: 1.0rem;
+    color: rgb(0, 0, 0);
+}
+
+/* _______________________________________________________..-Login-..___________________________________________________*/
+
+.logindiv
+{
+    display: block;
+    width: 40%;
+    min-width: 500px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-top: 10px;
+    background-color: #d7ffba;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+.usertext
+{
+    height: 80px;
+    padding: 10px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.entry
+{
+    border: #ebfbdd;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    padding-left: 10%;
+    padding-right: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 12%;
+}
+.entryselect
+{
+    border: #ebfbdd;
+    margin-top: 10px;
+}
+.entrylabel
+{
+    margin-left: 5%;
+    padding-bottom: 5px;
+}
+.icon
+{
+    color: rgb(68, 184, 76);
+    padding-right: 10px;
+}
+.gauthdiv
+{
+    position: relative;
+    left: 15%;
+    width: 75%;
+    padding-bottom: 20px;
+    border-radius: 15%;
+}
+/* _______________________________________________________..-cart-..___________________________________________________*/
+.sidepanel
+{
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding-top: 100px;
+    padding-left: 2%;
+    width: 28%;
+    height: 100%;
+    background-color:  hsla(95, 100%, 98%, 0.903);    
+}
+.cartheading
+{
+    width: 120%;
+    color: #e7fbe5;
+    font-weight: 600;
+    background-color: #40c04b;
+    padding-top: 25px;
+    padding-bottom: 5%;
+    padding-right: 15%;
+    position: relative;
+    right: 8%;
+    margin-bottom: 60px;
+}
+.cartpaneltext
+{
+    font-size: 0.975em;
+    position: relative;
+    padding-right: 0.3em;
+    padding-bottom: 20px;
+}
+#coupon
+{
+  width:55%;
+  position: relative;
+  bottom: 0.5em;
+}
+.box
+{
+    display: flex;
+    flex-direction: row;    
+}
+.colelement
+{
+    margin-bottom: 30px;
+}
+.cartbuttons
+{
+    background-color:rgb(241, 255, 244);
+    border-color:rgba(0, 188, 41, 0.882);
+    width: 15%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-right: 3%;
+    min-width: 30px;
+    float: right;
+    margin: 6px 6px 0px 0px;
+    border-radius: 15%;
+    color:rgb(0, 128, 28);
+    font-weight: 600;
+    font-size: small;
+}
+.cartbuttons:hover
+{
+    background-color: #ebfbdd;
+    box-shadow: 1px 1px 1px 1px rgba(132, 134, 132, 0.2), 1px 1px 1px 21x rgba(132, 134, 132, 0.2); 
+}
+.cartbuttons:focus
+{
+    outline: none;
+}
