@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from "react";
-import veggiesbanner from "./accfiles/GoGrocers1.png"
+import veggiesbanner from "./accfiles/GoGrocers1.jpg"
 import GoGrocers from "./accfiles/GoGrocers2.png"
 import "./styles.css"
 import $ from "jquery";
