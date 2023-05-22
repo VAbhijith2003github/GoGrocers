@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# E-Commerce Application - React frontend Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### [Live Site](https://vabhijith2003github.github.io/gogrocers/)
 
-## Available Scripts
+![E-commerce Website](https://github.com/VAbhijith2003github/gogrocers/blob/master/src/components/accfiles/page%20screenshot.jpg)
 
-In the project directory, you can run:
+## Description
+GoGrocers is a react based frontend application working as a e-commmerce website model dealing in groceries. The overall design and structuring was made after studying multiple grocery delivery websites. 
+The implementation of react is in following ways as below 
+<ul>
+  <li>React components for each webpage with elements rendering individually if needed .</li>
+  <li>React states used in created necessary variables for having dynamic components without reloading .</li>
+  <li>React context variable for implementation of a dynamic variable that have scope in each jsx components needed : cart variable is implemented with react context .</li>
+  <li>React router for having to route each jsx based page to its corresponding links .</li>
+  <li>React Useffect to implement dynamically change the banner icon on resizing .</li>
+  <li>React link instead of href components to load components without refreshing .</li>
+  <li>React select to implement a city selector in the website .</li>
+</ul>
 
-### `npm start`
+## Further progress
+The project is in progress further version updates will be coming soon
+planned updates.
+<ul>
+<li>Implement the feature mentioned in the issue section</li>
+<li>Further develop the backend in MERN stack .</li>
+<li>Implement the Google authentication which is currently in dummy state</li>
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contact
+Open to reviews and suggestions from fellow developers 
+feel free to contact : <br>
+<div style="float: right;">
+<img src="https://cdn-icons-png.flaticon.com/128/552/552486.png" width="20" height="20">
+<a href="mailto:vabhijith2003@gmail.com">vabhijith2003@gmail.com</a><br>
+<img src="https://cdn-icons-png.flaticon.com/128/174/174857.png" width="20" height="20">
+<a href="https://www.linkedin.com/in/v-abhijith-1a6592226/">V Abhijith</a><br>  
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
