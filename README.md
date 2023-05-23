@@ -21,9 +21,9 @@ The implementation of react is in following ways as below
 The project is in progress further version updates will be coming soon
 planned updates.
 <ul>
-<li>Implement the feature mentioned in the issue section</li>
+<li>Implement the feature mentioned in the issue section .</li>
 <li>Further develop the backend in MERN stack .</li>
-<li>Implement the Google authentication which is currently in dummy state</li>
+<li>Implement the Google authentication which is currently in dummy state .</li>
 </ul>
 
 ## Contact
