@@ -19,7 +19,6 @@ const Cart=()=>
       const optionscoupon = [
         { value: 'WELCOMEGG - zero delivery fee + 10% off on all grocery items.', label: 'WELCOMEGG - zero delivery fee + 10% off on all grocery items.' },
         { value: 'GROCERY10 - 10% off on all grocery items.', label: 'GROCERY10 - 10% off on all grocery items.' },
-        { value: 'FRUITS15 - 15% off on all fruit items.', label: 'FRUITS15 - 15% off on all fruit items.' },
         { value: 'VEGGIE20 - 20% off on all vegetable items.', label: 'VEGGIE20 - 20% off on all vegetable items.' },
       ];
 
@@ -103,7 +102,7 @@ const Cart=()=>
         {
             setselectedCoupon(value);   
             console.log(value === optionscoupon[0]?50+totalPrice*0.10:discount);
-            setdiscount(value === optionscoupon[0]?50+Math.round(totalPrice*0.10*100)/100:value === optionscoupon[1]?Math.round(totalPrice*0.10*100)/100:optionscoupon[3]?Math.round(vegPrice*0.20 * 100) / 100:discount);
+            setdiscount(value === optionscoupon[0]?50+Math.round(totalPrice*0.10*100)/100:value === optionscoupon[1]?Math.round(totalPrice*0.10*100)/100:optionscoupon[2]?Math.round(vegPrice*0.20 * 100) / 100:discount);
         }}
          placeholder="Enter coupon" 
          />
