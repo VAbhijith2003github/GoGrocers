@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gogrocers/static/css/main.79e4ccb4.css",
-    "main.js": "/gogrocers/static/js/main.14d0df16.js",
+    "main.js": "/gogrocers/static/js/main.078c3409.js",
     "static/media/GoGrocers1.jpg": "/gogrocers/static/media/GoGrocers1.78f2c10339b2cc280b8d.jpg",
     "static/media/bg.png": "/gogrocers/static/media/bg.6a0b53c4a0931a1d4cff.png",
     "static/media/404.png": "/gogrocers/static/media/404.6f208b94440336226089.png",
@@ -217,10 +217,10 @@
     "index.html": "/gogrocers/index.html",
     "static/media/Bottle Gourd.webp": "/gogrocers/static/media/Bottle Gourd.b973552baebda716631d.webp",
     "main.79e4ccb4.css.map": "/gogrocers/static/css/main.79e4ccb4.css.map",
-    "main.14d0df16.js.map": "/gogrocers/static/js/main.14d0df16.js.map"
+    "main.078c3409.js.map": "/gogrocers/static/js/main.078c3409.js.map"
   },
   "entrypoints": [
     "static/css/main.79e4ccb4.css",
-    "static/js/main.14d0df16.js"
+    "static/js/main.078c3409.js"
   ]
 }
