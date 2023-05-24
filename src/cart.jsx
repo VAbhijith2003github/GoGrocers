@@ -102,7 +102,8 @@ const Cart=()=>
         {
             setselectedCoupon(value);   
             console.log(value === optionscoupon[0]?50+totalPrice*0.10:discount);
-            setdiscount(value === optionscoupon[0]?50+Math.round(totalPrice*0.10*100)/100:value === optionscoupon[1]?Math.round(totalPrice*0.10*100)/100:optionscoupon[3]?Math.round(vegPrice*0.20 * 100) / 100:discount);        }}
+            setdiscount(value === optionscoupon[0]?50+Math.round(totalPrice*0.10*100)/100:value === optionscoupon[1]?Math.round(totalPrice*0.10*100)/100:optionscoupon[2]?Math.round(vegPrice*0.20 * 100) / 100:discount);
+        }}
          placeholder="Enter coupon" 
          />
          </div>
