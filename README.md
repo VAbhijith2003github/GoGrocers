@@ -1,38 +1,39 @@
-# E-Commerce Application - React frontend Application
+# Quote generator App
 
-### [Live Site](https://vabhijith2003github.github.io/gogrocers/)
+### [Live Site](https://quoter-taupe.vercel.app/)
 
-![E-commerce Website](https://github.com/VAbhijith2003github/gogrocers/blob/master/src/components/accfiles/page%20screenshot.jpg)
+![image](https://github.com/VAbhijith2003github/gogrocers/assets/119759593/dfb66057-f190-4fa2-bac1-0e17abbdb332)
 
-## Description
-GoGrocers is a react based frontend application working as a e-commmerce website model dealing in groceries. The overall design and structuring was made after studying multiple grocery delivery websites. 
-The implementation of react is in following ways as below 
-<ul>
-  <li>React components for each webpage with elements rendering individually if needed .</li>
-  <li>React states used in created necessary variables for having dynamic components without reloading .</li>
-  <li>React context variable for implementation of a dynamic variable that have scope in each jsx components needed : cart variable is implemented with react context .</li>
-  <li>React router for having to route each jsx based page to its corresponding links .</li>
-  <li>React Useffect to implement dynamically change the banner icon on resizing .</li>
-  <li>React link instead of href components to load components without refreshing .</li>
-  <li>React select to implement a city selector in the website .</li>
-</ul>
 
-## Further progress
-The project is in progress further version updates will be coming soon
-planned updates.
-<ul>
-<li>Implement the feature mentioned in the issue section .</li>
-<li>Further develop the backend in MERN stack .</li>
-<li>Implement the Google authentication which is currently in dummy state .</li>
-</ul>
+## Quote Generator App
+Welcome to the Quote Generator App! This React-based web application allows users to explore and bookmark inspirational quotes fetched from the Quotable API.
+
+## Features
+### Random Quote Generation
+<li> Upon entering the homepage, a random quote is loaded using the /random endpoint.
+Generate Another Quote,Users can click a button to generate another random quote on demand.</li>
+
+### Tag Filtering
+<li>The homepage displays a dropdown with a list of tags fetched from the /tags endpoint.
+Selecting a tag from the dropdown loads a random quote associated with the selected tag using the /random endpoint.
+Bookmarking</li>
+
+### Users can bookmark their favorite quotes.
+<li>Bookmarked quotes are accessible on the /bookmarks page.
+Redux is utilized to manage the global state, ensuring seamless bookmarking functionality.</li>
+
+### Responsive Design
+<li>The app is designed to be responsive, providing a seamless experience across various devices.
+
+### Loading Indicators
+<li>Loading indicators are implemented to provide visual feedback during API calls.
+Remove Quotes from Bookmarks</li>
+
+### Users can remove quotes from the bookmarks section.
+<li>User can remove bookmarked quotes by clicking the bin icon of the respective quote card in bookmarks section</li>
 
 ## Contact
-Open to reviews and suggestions from fellow developers 
-feel free to contact : <br>
-<div style="float: right;">
-<img src="https://cdn-icons-png.flaticon.com/128/552/552486.png" width="20" height="20">
-<a href="mailto:vabhijith2003@gmail.com">vabhijith2003@gmail.com</a><br>
-<img src="https://cdn-icons-png.flaticon.com/128/174/174857.png" width="20" height="20">
-<a href="https://www.linkedin.com/in/v-abhijith-1a6592226/">V Abhijith</a><br>  
-</div>
-
+Any suggestions or recommendations on this project are welcome
+<li>Github - https://github.com/VAbhijith2003github</li>
+<li>LinkedIn - https://www.linkedin.com/in/v-abhijith/</li>
+<li>Mail - vabhijith2003@gmail.com</li>
