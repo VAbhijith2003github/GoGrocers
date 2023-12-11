@@ -2,7 +2,7 @@
 
 ### [Live Site](https://vabhijith2003github.github.io/gogrocers/)
 
-![E-commerce Website](https://github.com/VAbhijith2003github/gogrocers/blob/master/src/components/accfiles/page%20screenshot.jpg)
+![image](https://github.com/VAbhijith2003github/gogrocers/assets/119759593/f2e3a903-a421-4bf1-8b23-1fea58ca107b)
 
 ## Description
 GoGrocers is a react based frontend application working as a e-commmerce website model dealing in groceries. The overall design and structuring was made after studying multiple grocery delivery websites. 
