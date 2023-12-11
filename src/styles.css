@@ -97,7 +97,7 @@ h5
 {
 padding-top: 20px;
 padding-bottom: 20px;
-background-image: url("./accfiles/bg.png");
+background-image: url("./images/bg.png");
 padding-right: 20px;
 }
 .banner
@@ -173,14 +173,14 @@ font-weight:500;
 .cartsec
 {
     margin-top: 110px;
-    background-image: url("./accfiles/bg.png");
+    background-image: url("./images/bg.png");
     height: 500px;
     width: 100%;
 }
 .loginsec
 {
     margin-top: 110px;
-    background-image: url("./accfiles/bg.png");
+    background-image: url("./images/bg.png");
     height: 500px;
     width: 100%;
 }
@@ -188,12 +188,12 @@ font-weight:500;
 .productssec
 {
     margin-top: 100px;
-    background-image: url("./accfiles/bg.png");    
+    background-image: url("./images/bg.png");    
 }
 .vegetablessec
 {
     margin-top: 100px;
-    background-image: url("./accfiles/bg.png");    
+    background-image: url("./images/bg.png");    
 }
 .cardsproduct
 {

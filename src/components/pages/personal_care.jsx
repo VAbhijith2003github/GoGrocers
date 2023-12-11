@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import "./components/styles.css"
+import "../../styles.css";
 import $ from "jquery";
-import Header from "./components/header";
-import staples from "./components/accfiles/staples images/stapleimg"
-import { MyContext } from './App';
+import Header from "../elements/header";
+import pc from "../../images/personal_care images/pcimg";
+import { MyContext } from '../../App';
 
-function Staples()
+function Personal_care()
 {
    
     const {updatecart}= useContext(MyContext);
@@ -15,22 +15,23 @@ function Staples()
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
-        {staples.map((staples, index) => (
+        {pc.map((pc, index) => (
         <div key={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg">
           <div className="imgdiv">
-            <img className="cardimgproduct" src={staples.src} alt="pic" />
+            <img className="cardimgproduct" src={pc.src} alt="pic" />
           </div>
-          <p className="cardtextproduct">{staples.name}</p>
+          <p className="cardtextproduct">{pc.name}</p>
           <div className="infodev">
           <button className="productaddtocart" onClick={() => {
             
             updatecart({
-                name: staples.name,
-                price: staples.price,
-                src: staples.src,
-                priceint:staples.priceint,
-                weight:staples.weight,
-                unit:staples.unit
+                name: pc.name,
+                price: pc.price,
+                src: pc.src,
+                priceint:pc.priceint,
+                weight:pc.weight,
+                unit:"gm",
+                type:"pc"
                 });
               
             $("#addtocart").addClass("animatecart");
@@ -39,14 +40,14 @@ function Staples()
             $("#addtocart").removeClass("animatecart")
             },100)  
             }}>ADD</button>
-            <h4 className="productprice">{staples.price}</h4>
+            <h4 className="productprice">{pc.price}</h4>
           </div>
         </div>
         ))}
         </div>
         </section>
         </section>
-    <div style={{backgroundColor:"rgb(201, 201, 201)",paddingBottom:"30px",position:"relative",zIndex:"1"}}>
+    <div style={{backgroundColor:"rgba(180, 180, 180, 0.742)",paddingBottom:"30px",position:"relative",zIndex:"1"}}>
     <div className="row footerrow">  
       <i className="fa-brands fa-twitter ficon"></i>
       <i className="fa-brands fa-facebook-f ficon"></i>
@@ -60,4 +61,4 @@ function Staples()
 }
 
 
-export default Staples;
+export default Personal_care;

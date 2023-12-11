@@ -1,5 +1,5 @@
 import React from "react";
-import "./components/styles.css"
+import "../../styles.css"
 import Select from 'react-select';
 import {useState} from 'react';
 import { Link } from 'react-router-dom';

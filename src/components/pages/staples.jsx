@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import "./components/styles.css"
+import "../../styles.css";
 import $ from "jquery";
-import Header from "./components/header";
-import pp from "./components/accfiles/packaged_product images/ppimg";
-import { MyContext } from './App';
+import Header from "../elements/header";
+import staples from "../../images/staples images/stapleimg"
+import { MyContext } from '../../App';
 
-function Vegetables()
+function Staples()
 {
    
     const {updatecart}= useContext(MyContext);
@@ -15,23 +15,22 @@ function Vegetables()
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
-        {pp.map((pp, index) => (
+        {staples.map((staples, index) => (
         <div key={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg">
           <div className="imgdiv">
-            <img className="cardimgproduct" src={pp.src} alt="pic" />
+            <img className="cardimgproduct" src={staples.src} alt="pic" />
           </div>
-          <p className="cardtextproduct">{pp.name}</p>
+          <p className="cardtextproduct">{staples.name}</p>
           <div className="infodev">
           <button className="productaddtocart" onClick={() => {
             
             updatecart({
-                name: pp.name,
-                price: pp.price,
-                src: pp.src,
-                priceint:pp.priceint,
-                weight:pp.weight,
-                unit:"gm", 
-                type:"veg"
+                name: staples.name,
+                price: staples.price,
+                src: staples.src,
+                priceint:staples.priceint,
+                weight:staples.weight,
+                unit:staples.unit
                 });
               
             $("#addtocart").addClass("animatecart");
@@ -40,7 +39,7 @@ function Vegetables()
             $("#addtocart").removeClass("animatecart")
             },100)  
             }}>ADD</button>
-            <h4 className="productprice">{pp.price}</h4>
+            <h4 className="productprice">{staples.price}</h4>
           </div>
         </div>
         ))}
@@ -61,4 +60,4 @@ function Vegetables()
 }
 
 
-export default Vegetables;
+export default Staples;

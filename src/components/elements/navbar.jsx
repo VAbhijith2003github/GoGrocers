@@ -1,10 +1,10 @@
 import React, { useContext} from 'react';
-import "./styles.css";
-import cartpic from "./accfiles/shopping-cart.png";
-import user from "./accfiles/user-interface.png";
+import "../../styles.css"
+import cartpic from "../../images//shopping-cart.png";
+import user from "../../images/user-interface.png";
 import {Navbar,Nav, NavItem} from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { MyContext } from '../App';
+import { MyContext } from '../../App';
   
 function Navbars()
 {

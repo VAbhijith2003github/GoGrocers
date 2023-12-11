@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import "./components/styles.css"
+import "../../styles.css"
 import $ from "jquery";
-import Header from "./components/header";
-import fruit from "./components/accfiles/fruits images/fruitimg";
-import { MyContext } from './App';
+import Header from "../elements/header";
+import fruit from "../../images/fruits images/fruitimg"
+import { MyContext } from '../../App';
 
 function Fruits()
 {

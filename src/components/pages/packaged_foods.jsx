@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import "./components/styles.css"
+import "../../styles.css"
 import $ from "jquery";
-import Header from "./components/header";
-import pc from "./components/accfiles/personal_care images/pcimg";
-import { MyContext } from './App';
+import Header from "../elements/header";
+import pp from "../../images/packaged_product images/ppimg"
+import { MyContext } from '../../App';
 
-function Personal_care()
+function Vegetables()
 {
    
     const {updatecart}= useContext(MyContext);
@@ -15,23 +15,23 @@ function Personal_care()
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
-        {pc.map((pc, index) => (
+        {pp.map((pp, index) => (
         <div key={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg">
           <div className="imgdiv">
-            <img className="cardimgproduct" src={pc.src} alt="pic" />
+            <img className="cardimgproduct" src={pp.src} alt="pic" />
           </div>
-          <p className="cardtextproduct">{pc.name}</p>
+          <p className="cardtextproduct">{pp.name}</p>
           <div className="infodev">
           <button className="productaddtocart" onClick={() => {
             
             updatecart({
-                name: pc.name,
-                price: pc.price,
-                src: pc.src,
-                priceint:pc.priceint,
-                weight:pc.weight,
-                unit:"gm",
-                type:"pc"
+                name: pp.name,
+                price: pp.price,
+                src: pp.src,
+                priceint:pp.priceint,
+                weight:pp.weight,
+                unit:"gm", 
+                type:"veg"
                 });
               
             $("#addtocart").addClass("animatecart");
@@ -40,14 +40,14 @@ function Personal_care()
             $("#addtocart").removeClass("animatecart")
             },100)  
             }}>ADD</button>
-            <h4 className="productprice">{pc.price}</h4>
+            <h4 className="productprice">{pp.price}</h4>
           </div>
         </div>
         ))}
         </div>
         </section>
         </section>
-    <div style={{backgroundColor:"rgba(180, 180, 180, 0.742)",paddingBottom:"30px",position:"relative",zIndex:"1"}}>
+    <div style={{backgroundColor:"rgb(201, 201, 201)",paddingBottom:"30px",position:"relative",zIndex:"1"}}>
     <div className="row footerrow">  
       <i className="fa-brands fa-twitter ficon"></i>
       <i className="fa-brands fa-facebook-f ficon"></i>
@@ -61,4 +61,4 @@ function Personal_care()
 }
 
 
-export default Personal_care;
+export default Vegetables;

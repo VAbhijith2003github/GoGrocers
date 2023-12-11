@@ -1,6 +1,6 @@
 import React from "react";
-import "./components/styles.css"
-import bgimg from "./components/accfiles/404.png";
+import "../../styles.css";
+import bgimg from "../../images/404.png"
 import { Link } from 'react-router-dom';
 
 function page404()

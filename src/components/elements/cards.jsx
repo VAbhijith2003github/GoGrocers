@@ -1,11 +1,11 @@
 import React from "react";
-import "./styles.css";
-import img1 from "./accfiles/product_cards/veggiesimg.png";
-import img2 from "./accfiles/product_cards/personal care.png";
-import img3 from "./accfiles/product_cards/packaged products.png";
-import img4 from "./accfiles/product_cards/cleaning products.png";
-import img5 from "./accfiles/product_cards/fruits.jpg";
-import img6 from "./accfiles/product_cards/staples.jpg";
+import "../../styles.css"
+import img1 from "../../images/product_cards/veggiesimg.png";
+import img2 from "../../images/product_cards/personal care.png";
+import img3 from "../../images/product_cards/packaged products.png";
+import img4 from "../../images/product_cards/cleaning products.png";
+import img5 from "../../images/product_cards/fruits.jpg";
+import img6 from "../../images/product_cards/staples.jpg";
 import { useNavigate } from "react-router-dom";
 
 

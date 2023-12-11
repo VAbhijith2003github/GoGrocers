@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import "./components/styles.css"
-import Header from "./components/header";
-import { MyContext } from './App';
+import "../../styles.css"
+import Header from "../elements/header";
+import { MyContext } from '../../App';
 import Select from 'react-select';
 
 const Cart=()=>

@@ -1,17 +1,17 @@
 import React, { createContext, useState } from 'react';
 import $ from 'jquery';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Home from "./home"
-import Cart from "./cart";
-import Login from "./login"
-import Vegetables from './vegetables';
-import Personalcare from "./personal_care";
-import Packagedfoods from "./packaged_foods";
-import Cleaningproducts from "./cleaning_products";
-import Fruits from "./fruits";
-import Staples from "./staples";
-import Page404 from "./page404";
-import Signup  from "./signup";
+import Home from "./components/pages/home"
+import Cart from "./components/pages/cart";
+import Login from "./components/pages/login"
+import Vegetables from './components/pages/vegetables';
+import Personalcare from "./components/pages/personal_care";
+import Packagedfoods from "./components/pages/packaged_foods";
+import Cleaningproducts from "./components/pages/cleaning_products";
+import Fruits from "./components/pages/fruits";
+import Staples from "./components/pages/staples";
+import Page404 from "./components/pages/page404";
+import Signup  from "./components/pages/signup";
 
 export const MyContext = createContext();
 

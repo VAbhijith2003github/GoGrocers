@@ -1,9 +1,9 @@
 import React from 'react';
-import "./components/styles.css"
-import Footer from './components/footer.jsx';
-import Header from './components/header.jsx';
-import Banner from './components/ad.jsx';
-import Cards  from './components/cards.jsx';
+import "../../styles.css"
+import Footer from "../elements/footer.jsx"
+import Header from '../elements/header.jsx';
+import Banner from '../elements/ad.jsx';
+import Cards  from '../elements/cards.jsx';
 
 function Home()
 {
