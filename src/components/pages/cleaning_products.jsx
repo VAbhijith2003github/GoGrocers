@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import "../../styles.css"
 import $ from "jquery";
-import Header from "../elements/header";
+import Navbar from "../elements/navbar";
 import cp from "../../images/cleaning_products images/cpimg"
 import { MyContext } from '../../App';
 
@@ -10,12 +10,12 @@ function Cleaning_products()
     const {updatecart}= useContext(MyContext);
     return(
     <div className="vegetables">
-        <Header/>
+        <Navbar/>
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
         {cp.map((cp, index) => (
-        <div id={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg">
+        <div id={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg ">
           <div className="imgdiv">
             <img className="cardimgproduct" src={cp.src} alt="pic" />
           </div>

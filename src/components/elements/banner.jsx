@@ -33,7 +33,7 @@ function Banner()
       }
     }, []);
     return(
-        <div>
+        <div className="bannerholder">
         <section className="bannersec">
         <div className="banner" id="bannerdiv">
         <img className ="veggiesbanner" src={imageUrl} alt="veggiesbanner"></img>   

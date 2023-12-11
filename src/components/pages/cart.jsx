@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import "../../styles.css"
-import Header from "../elements/header";
+import Navbar from "../elements/navbar";
 import { MyContext } from '../../App';
 import Select from 'react-select';
 
@@ -37,7 +37,7 @@ const Cart=()=>
 
     return(
     <div className="cart">
-        <Header/>
+        <Navbar/>
         <section className="vegetablessec" >
         <section className="cardsproduct" style={{minHeight:"750px"}}>
         <div>

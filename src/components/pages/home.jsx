@@ -1,23 +1,19 @@
-import React from 'react';
-import "../../styles.css"
-import Footer from "../elements/footer.jsx"
-import Header from '../elements/header.jsx';
-import Banner from '../elements/ad.jsx';
-import Cards  from '../elements/cards.jsx';
+import React from "react";
+import "../../styles.css";
+import Footer from "../elements/footer.jsx";
+import Navbar from "../elements/navbar.jsx";
+import Banner from "../elements/banner.jsx";
+import Cards from "../elements/cards.jsx";
 
-function Home()
-{
-    return(
-      <div>
-        <Header/>
-        <hr className='line1'></hr>
-        <hr className='line2'></hr>
-        <Banner/>
-       <Cards/>
-       <Footer/>
-       </div>
-       
-    );
+function Home() {
+  return (
+    <div>
+      <Navbar />
+      <Banner />
+      <Cards />
+      <Footer />
+    </div>
+  );
 }
 
 export default Home;

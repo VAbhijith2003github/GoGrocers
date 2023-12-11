@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import "../../styles.css";
 import $ from "jquery";
-import Header from "../elements/header";
+import Navbar from "../elements/navbar";
 import vegetables from "../../images/vegetable images/vegimg";
 import { MyContext } from '../../App';
 
@@ -11,12 +11,12 @@ function Vegetables()
 
     return(
     <div className="vegetables">
-        <Header/>
+        <Navbar/>
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
         {vegetables.map((vegetable, index) => (
-        <div key={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg">
+        <div key={index} className="col-lg-3 col-md-4 col-sm-6 colelement cardbg ">
           <div className="imgdiv">
             <img className="cardimgproduct" src={vegetable.src} alt="pic" />
           </div>

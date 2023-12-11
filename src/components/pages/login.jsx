@@ -22,7 +22,7 @@ const [selectedCity, setSelectedCity] = useState(null);
   return(
     <div>
       <div style={{height:"80px",backgroundColor:"rgb(68, 184, 76)"}}>
-      <Link to="/" className= "navbar-brand logo" style={{position:"relative",top:"15px"}}><h2 className="Title">GoGrocers</h2></Link>
+      <Link to="/" className= "navbrand" style={{position:"relative",top:"15px",left:"30px"}}><h2 className="Title">GoGrocers</h2></Link>
       </div>
       <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div className="logindiv" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>

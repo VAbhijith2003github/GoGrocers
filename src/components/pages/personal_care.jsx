@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import "../../styles.css";
 import $ from "jquery";
-import Header from "../elements/header";
+import Navbar from "../elements/navbar";
 import pc from "../../images/personal_care images/pcimg";
 import { MyContext } from '../../App';
 
@@ -11,7 +11,7 @@ function Personal_care()
     const {updatecart}= useContext(MyContext);
     return(
     <div className="vegetables">
-        <Header/>
+        <Navbar/>
         <section className="vegetablessec">
         <section className="cardsproduct">
         <div className="row">
