@@ -26,7 +26,7 @@ const Navbarcomp = () => {
           placeholder="search"
           id="search"
         />
-        <img src={search} alt="search icon" className="navicon" style={{position:"relative",right:"50px",opacity:"50%"}}/>
+        <img src={search} alt="search icon" id="searchicon"/>
       </Link>
       <Link to="/cart" className="navitem">
       <img src={cart} alt="cart" className="navicon"/>

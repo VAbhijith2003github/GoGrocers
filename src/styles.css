@@ -87,6 +87,12 @@ h5 {
   height: 20px;
   margin: 5px 10px;
 }
+#searchicon {
+  height: 20px;
+  right: 50px;
+  opacity: 50%;
+  position: relative;
+}
 .search-bar {
   padding: 5px 5vw;
   border-radius: 10px;
@@ -119,6 +125,12 @@ h5 {
   .topnav a.icon {
     float: right;
     display: block;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .search-bar {
+    width: 145px;
   }
 }
 
@@ -175,6 +187,12 @@ h5 {
   .navbrand {
     font-size: 25px;
   }
+  .textfooter {
+    font-size: 12px !important;
+  }
+  .homepagecard {
+    scale: 0.75;
+  }
 }
 @media screen and (max-width: 375px) {
   .veggiesbanner {
@@ -190,7 +208,23 @@ h5 {
     bottom: 100px;
   }
   .bannerholder {
-    height : 450px;
+    height: 450px;
+  }
+  .footertext form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .emailbutton {
+    width: 80%;
+  }
+  .suscribebox {
+    width: 80% !important;
+    margin-bottom: 10px;
+  }
+  .brandtext {
+    font-size: 25px;
   }
 }
 .veggiesbanner {
@@ -201,7 +235,7 @@ h5 {
 }
 /* _______________________________________________________..-footer-..___________________________________________________*/
 .footer {
-  background-color: rgb(201, 201, 201);
+  background-color: rgba(201, 201, 201, 0.7);
   padding: 5%;
   margin-top: 10px;
 }
@@ -217,10 +251,33 @@ h5 {
 .ficon {
   padding: 2% 5% 2% 5%;
 }
-.suscribe {
+.brandtext {
+  color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-shadow: 2px 2px 4px gray;
+  text-align: center;
+}
+.emailbutton {
+  width: 100;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #40c04b;
+}
+.suscribebox {
+  min-width: 200px;
+  width: 25%;
+  background-color: #f0f0f5;
+  height: 40px;
+  border: none;
+  padding-left: 20px;
+  padding-right: 30px;
+  margin-right: 10px;
+  outline: none;
+}
+.footertext form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 /* _______________________________________________________..-card-..___________________________________________________*/
@@ -236,13 +293,12 @@ h5 {
   border-radius: 40%;
   padding-bottom: 5px;
 }
-.homepagecard
-{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    flex-direction: column;
-    text-align: center;
+.homepagecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 .cardimg:hover {
   height: 95px;
@@ -268,18 +324,18 @@ h5 {
 }
 /* _______________________________________________________..-vegetables-..___________________________________________________*/
 .vegetablessec {
-    margin-top: 10px;
-    background-image: url("./images/bg.png");
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+  margin-top: 10px;
+  background-image: url("./images/bg.png");
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .cardsproduct {
-    background-color: rgba(163, 255, 110, 0.377);
-    padding-bottom: 50px;
+  background-color: rgba(163, 255, 110, 0.377);
+  padding-bottom: 50px;
 }
 .cardtextproduct {
   color: black;
