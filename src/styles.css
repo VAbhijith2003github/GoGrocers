@@ -57,7 +57,7 @@ h5 {
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 2;
   padding: 0px 50px;
 }
 .navbrand {
@@ -182,6 +182,9 @@ h5 {
   .veggiesbanner {
     scale: 0.8;
   }
+  .adimageholder {
+    scale: 0.8;
+  }
 }
 @media screen and (max-width: 700px) {
   .navbrand {
@@ -196,6 +199,9 @@ h5 {
 }
 @media screen and (max-width: 375px) {
   .veggiesbanner {
+    scale: 0.6;
+  }
+  .adimageholder {
     scale: 0.6;
   }
   .navbrand {
@@ -233,6 +239,20 @@ h5 {
   margin-top: 80px;
   margin: 5px 0px 10px;
 }
+.adimagediv {
+  margin-top: 10px;
+  background-image: url("./images/bg.png");
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+}
+
+
 /* _______________________________________________________..-footer-..___________________________________________________*/
 .footer {
   background-color: rgba(201, 201, 201, 0.7);
