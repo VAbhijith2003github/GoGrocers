@@ -47,7 +47,7 @@ function Cleaning_products()
         </div>
         </section>
         </section>
-    <div style={{backgroundColor:"rgba(180, 180, 180, 0.742)",paddingBottom:"30px",position:"relative",zIndex:"1"}}>
+        <div style={{backgroundColor:"rgba(180, 180, 180, 0.300)",paddingBottom:"30px"}}>
     <div className="row footerrow">  
       <i className="fa-brands fa-twitter ficon"></i>
       <i className="fa-brands fa-facebook-f ficon"></i>

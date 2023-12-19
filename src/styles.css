@@ -32,7 +32,8 @@ h5 {
 }
 .cartselect {
   outline: 1px solid white;
-  width: 30%;
+  width: 50%;
+  min-width: 200px;
   margin-left: 4%;
 }
 #loginselect {
@@ -251,8 +252,6 @@ h5 {
   display: flex;
   justify-content: center;
 }
-
-
 /* _______________________________________________________..-footer-..___________________________________________________*/
 .footer {
   background-color: rgba(201, 201, 201, 0.7);
@@ -267,6 +266,7 @@ h5 {
   padding: 0 12% 0 12%;
   display: flex;
   justify-content: center;
+  margin: 0px;
 }
 .ficon {
   padding: 2% 5% 2% 5%;
@@ -346,16 +346,18 @@ h5 {
 .vegetablessec {
   margin-top: 10px;
   background-image: url("./images/bg.png");
-  padding-top: 20px;
-  padding-bottom: 20px;
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 .cardsproduct {
-  background-color: rgba(163, 255, 110, 0.377);
+  background-color: rgba(163, 255, 110, 0.253);
   padding-bottom: 50px;
+  min-height: 750px;
 }
 .cardtextproduct {
   color: black;
@@ -371,6 +373,7 @@ h5 {
   padding-left: 45px;
   padding-right: 45px;
   padding-top: 20px;
+  margin-bottom: 20px;
 }
 .cardimgproduct {
   height: 90px;
@@ -479,28 +482,44 @@ h5 {
   right: 0;
   top: 0;
   padding-top: 100px;
-  padding-left: 2%;
-  width: 28%;
-  height: 100%;
+  padding-left: 20px;
+  width: 25%;
+  min-height: 72%;
   background-color: hsla(95, 100%, 98%, 0.903);
 }
+@media screen and (max-width: 1100px) {
+  .sidepanel {
+    position: static;
+    width: 100%;
+    padding-bottom: 50px;
+    padding-top: 0px;
+    padding-left: 0px !important;
+  }
+  .cartheading {
+    width: 100% !important;
+    right: 0px !important;
+    padding-right: 0px !important;
+  }
+  .sidepanel p{
+    padding-left: 20px;
+  }
+}
 .cartheading {
-  width: 120%;
   color: #e7fbe5;
+  width: 106%;
   font-weight: 600;
   background-color: #40c04b;
   padding-top: 25px;
   padding-bottom: 5%;
-  padding-right: 15%;
-  position: relative;
-  right: 8%;
+  padding-right: 20px;
   margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  right: 20px;
 }
 .cartpaneltext {
   font-size: 0.975em;
-  position: relative;
   padding-right: 0.3em;
-  padding-bottom: 20px;
 }
 #coupon {
   width: 55%;
@@ -510,6 +529,7 @@ h5 {
 .box {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .cartbuttons {
   background-color: rgb(241, 255, 244);
