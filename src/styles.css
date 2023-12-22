@@ -428,53 +428,103 @@ h5 {
 }
 
 /* _______________________________________________________..-Login-..___________________________________________________*/
-
-.logindiv {
-  display: block;
-  width: 40%;
-  min-width: 500px;
-  margin-left: 30%;
-  margin-right: 30%;
-  padding-top: 10px;
-  background-color: #d7ffba;
+.login {
+  margin: auto;
+  width: 450px;
+  background-color: #e3ffc9;
+  height: 100%;
+  padding-bottom: 40px;
+  margin-top: 20px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbrandlogin {
+  font-size: 35px;
+  margin-right: 20vw;
+  text-decoration: none;
+  color: #f2f2f2;
+}
+.navbrandlogin:hover
+{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+@media screen and (max-width:500px) {
+  .login {
+    width: 90%;
+    border-radius: 15px;
+  }  
+  .login button
+  {
+    width: 200px;
+  }
+  .loginform input {
+    margin: 5px 0px;
+    height: 30px;
+    width: 200px;
+    font-size: small;
+  }
+}
+.headinglogin {
+  margin-top: 20px;
+  color: #40c04b;
+  font-weight: 600;
+}
+.loginline {
+  background-color: rgba(65, 65, 65, 0.327);
+  height: 0.1px;
+  width: 200px;
+  margin: 8px;
+}
+.loginform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-top: 30px;
+}
+.loginform input {
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  margin: 10px 0px;
+  height: 40px;
+  padding: 0px 15% 0 5%;
+}
+.loginbutton {
+  background-color: #40c04b;
+  outline: none;
+  border: none;
   border-radius: 20px;
+  color: white;
+  width: 250px;
+  height: 50px;
+  padding: 10px 0px;
+  margin-top: 30px;
 }
-.usertext {
-  height: 80px;
-  padding: 10px;
-  margin-left: 30%;
-  margin-right: 30%;
+#google {
+  background-color: white;
+  color: #40c04b;
+  font-weight: 500;
 }
-.entry {
-  border: #ebfbdd;
-  padding-bottom: 6px;
-  padding-top: 6px;
-  padding-left: 10%;
-  padding-right: 30%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  position: relative;
-  left: 12%;
+#line {
+  margin-top: 50px;
+  margin-bottom: 0px;
 }
-.entryselect {
-  border: #ebfbdd;
-  margin-top: 10px;
+.createacc {
+  color:#40c04b;
+  font-weight: 500;
+  padding-top: 15px;
+  margin: 0px;
+  text-decoration: none;
 }
-.entrylabel {
-  margin-left: 5%;
-  padding-bottom: 5px;
-}
-.icon {
-  color: rgb(68, 184, 76);
-  padding-right: 10px;
-}
-.gauthdiv {
-  position: relative;
-  left: 15%;
-  width: 75%;
-  padding-bottom: 20px;
-  border-radius: 15%;
+.createacc:hover{
+  text-decoration: none;
+  color: #40c04b;
 }
 /* _______________________________________________________..-cart-..___________________________________________________*/
 .sidepanel {
@@ -500,7 +550,7 @@ h5 {
     right: 0px !important;
     padding-right: 0px !important;
   }
-  .sidepanel p{
+  .sidepanel p {
     padding-left: 20px;
   }
 }
