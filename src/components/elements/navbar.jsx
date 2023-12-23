@@ -1,11 +1,25 @@
 import "../../styles.css";
 import { Link } from "react-router-dom";
-import login from "../../images/user.png"
-import cart from "../../images/cart.png"
-import search from "../../images/search.png"
-
+import login from "../../images/user.png";
+import cart from "../../images/cart.png";
+import $ from "jquery";
+import search from "../../images/search.png";
+import { useState, useEffect } from "react";
 
 const Navbarcomp = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    onLoad();
+  }, []); 
+
+  function onLoad() {
+    console.log(authenticated);
+    if (localStorage.getItem("authenticated") === "true") {
+      setAuthenticated(true);
+    }
+  }
+
   function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -14,8 +28,9 @@ const Navbarcomp = () => {
       x.className = "topnav";
     }
   }
+
   return (
-    <div class="topnav" id="myTopnav">
+    <div className="topnav" id="myTopnav">
       <Link to="/" className="navitem">
         <h1 className="navbrand">GoGrocers</h1>
       </Link>
@@ -26,18 +41,27 @@ const Navbarcomp = () => {
           placeholder="search"
           id="search"
         />
-        <img src={search} alt="search icon" id="searchicon"/>
+        <img src={search} alt="search icon" id="searchicon" />
       </Link>
       <Link to="/cart" className="navitem">
-      <img src={cart} alt="cart" className="navicon"/>
+        <img src={cart} alt="cart" className="navicon" />
         CART
       </Link>
       <Link to="/login" className="navitem">
-        <img src={login} alt="login" className="navicon"/>
-        SIGN&nbsp;IN
+        {authenticated === false ? (
+          <>
+            <img src={login} alt="login" className="navicon" />
+            SIGN&nbsp;IN
+          </>
+        ) : (
+          <>
+            <img src={login} alt="login" className="navicon" />
+            You
+          </>
+        )}
       </Link>
-      <Link to="javascript:void(0);" class="icon" onClick={myFunction}>
-        <i class="fa fa-bars"></i>
+      <Link className="icon" onClick={myFunction}>
+        <i className="fa fa-bars"></i>
       </Link>
     </div>
   );

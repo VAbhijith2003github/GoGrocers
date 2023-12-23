@@ -34,7 +34,7 @@ const ImageCarousel = () => {
     <div className="adimagediv">
       <Carousel fade controls={false} indicators={false} interval={5000}>
         {imageset.map((image, index) => (
-          <Carousel.Item>
+          <Carousel.Item key={index}>
             <img
               className="d-block mx-auto"
               src={image}

@@ -68,7 +68,6 @@ h5 {
   color: #f2f2f2;
 }
 .navbrand:hover {
-  font-size: 35px;
   margin-right: 20vw;
   text-decoration: none;
   color: #f2f2f2;
@@ -200,9 +199,6 @@ h5 {
 }
 @media screen and (max-width: 375px) {
   .veggiesbanner {
-    scale: 0.6;
-  }
-  .adimageholder {
     scale: 0.6;
   }
   .navbrand {
@@ -428,6 +424,12 @@ h5 {
 }
 
 /* _______________________________________________________..-Login-..___________________________________________________*/
+.title {
+  font-size: 35px;
+  margin-right: 20vw;
+  text-decoration: none;
+  color: #f2f2f2;
+}
 .login {
   margin: auto;
   width: 450px;
@@ -446,19 +448,17 @@ h5 {
   text-decoration: none;
   color: #f2f2f2;
 }
-.navbrandlogin:hover
-{
+.navbrandlogin:hover {
   text-decoration: none;
   cursor: pointer;
   color: white;
 }
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) {
   .login {
     width: 90%;
     border-radius: 15px;
-  }  
-  .login button
-  {
+  }
+  .login button {
     width: 200px;
   }
   .loginform input {
@@ -511,18 +511,21 @@ h5 {
   color: #40c04b;
   font-weight: 500;
 }
+#google:focus {
+  outline: none;
+}
 #line {
   margin-top: 50px;
   margin-bottom: 0px;
 }
 .createacc {
-  color:#40c04b;
+  color: #40c04b;
   font-weight: 500;
   padding-top: 15px;
   margin: 0px;
   text-decoration: none;
 }
-.createacc:hover{
+.createacc:hover {
   text-decoration: none;
   color: #40c04b;
 }
