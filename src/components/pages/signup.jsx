@@ -6,9 +6,9 @@ import { app } from "../../firebase-config.js";
 import { useNavigate } from "react-router-dom";
 import {
   getAuth,
+  signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithRedirect,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -65,7 +65,7 @@ function SignUp() {
   };
 
   const Loginwithgoogle = async () => {
-    signInWithRedirect(auth, provider)
+    signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
