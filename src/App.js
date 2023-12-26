@@ -12,6 +12,7 @@ import Fruits from "./components/pages/fruits";
 import Staples from "./components/pages/staples";
 import Page404 from "./components/pages/page404";
 import Signup  from "./components/pages/signup";
+import DashBoard from './components/pages/dashboard';
 
 export const MyContext = createContext();
 
@@ -47,8 +48,8 @@ const App=()=> {
     <Route exact path='/cleaningproducts' element ={<Cleaningproducts/>} />
     <Route exact path='/fruits' element ={<Fruits/>} />
     <Route exact path='/staples' element ={<Staples/>} />
+    <Route exact path="/dashboard" element ={<DashBoard/>}/>
     <Route exact path="*" element ={<Page404/>}/>
-    <Route exact path="/gogrocers" element ={<Home/>}/>
     </Routes>
     </Router>
     </MyContext.Provider>

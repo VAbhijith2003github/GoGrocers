@@ -8,15 +8,17 @@ import { useState, useEffect } from "react";
 
 const Navbarcomp = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [loginLink, setLoginLink] = useState("/login");
 
   useEffect(() => {
     onLoad();
-  }, []); 
+  }, []);
 
   function onLoad() {
     console.log(authenticated);
     if (localStorage.getItem("authenticated") === "true") {
       setAuthenticated(true);
+      setLoginLink("/dashboard");
     }
   }
 
@@ -47,7 +49,7 @@ const Navbarcomp = () => {
         <img src={cart} alt="cart" className="navicon" />
         CART
       </Link>
-      <Link to="/login" className="navitem">
+      <Link to={loginLink} className="navitem">
         {authenticated === false ? (
           <>
             <img src={login} alt="login" className="navicon" />

@@ -1,5 +1,5 @@
-import React from "react";
 import "../../styles.css";
+import React from "react";
 import Footer from "../elements/footer.jsx";
 import Navbar from "../elements/navbar.jsx";
 import Banner from "../elements/banner.jsx";
