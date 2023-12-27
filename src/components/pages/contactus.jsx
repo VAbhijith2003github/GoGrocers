@@ -38,7 +38,7 @@ function ContactUs() {
     <>
       <NavBar />
       <div className="bannersec" id="dashboardsec">
-        <section className="dashboardcards">
+        <section className="dashboardcards" id="contactussec">
           <div className="contactus">
             <h4>Contact Us</h4>
             <form>
@@ -52,7 +52,7 @@ function ContactUs() {
                 onChange={(e) => setQuery(e.target.value)}
               ></textarea>
               <br />
-              <button className="loginbutton" type="submit">
+              <button className="loginbutton" type="submit" id="contactusbutton">
                 Submit
               </button>
             </form>
