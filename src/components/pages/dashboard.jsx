@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles.css";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
 import img1 from "../../images/accmedia/001-order.png";
@@ -9,24 +8,25 @@ import img4 from "../../images/accmedia/006-user.png";
 import img5 from "../../images/accmedia/coupon.png";
 import logout from "../../images/accmedia/logout.png";
 import { app } from "../../firebase-config.js";
-import { getAuth,signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import "../../styles.css";
 
 function DashBoard() {
   let navigate = useNavigate();
   const auth = getAuth(app);
   const cardnames = [
-    "yourorders",
-    "addresses",
-    "profile",
+    "profile/yourorders",
+    "profile/addresses",
     "contactus",
-    "rewards",
+    "profile",
+    "profile/rewards",
   ];
 
   function logoutfunc() {
     signOut(auth)
       .then(() => {
         localStorage.setItem("authenticated", false);
+        localStorage.removeItem("token");
         navigate("/");
       })
       .catch((error) => {

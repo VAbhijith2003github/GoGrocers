@@ -38,8 +38,8 @@ function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user.email);
-        localStorage.setItem("useremail",user.email);
+        const token = user.getIdToken();
+        localStorage.setItem("token",token);
         localStorage.setItem("authenticated",true);
         navigate("/");
       })
