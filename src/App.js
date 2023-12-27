@@ -25,7 +25,7 @@ import ComingSoon from "./components/pages/comingsoon";
 export const MyContext = createContext();
 
 const App = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setcart] = useState([]);
 
   const updatecart = (item) => {
     const existingItemIndex = cart.findIndex(
@@ -34,10 +34,10 @@ const App = () => {
     if (existingItemIndex >= 0) {
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].frequency++;
-      setCart(updatedCart);
+      setcart(updatedCart);
     } else {
       var newItem = { ...item, frequency: 1 };
-      setCart((cart) => [newItem, ...cart]);
+      setcart((cart) => [newItem, ...cart]);
     }
   };
 
@@ -45,7 +45,7 @@ const App = () => {
 
   return (
     <div>
-      <MyContext.Provider value={{ cart, setCart, updatecart }}>
+      <MyContext.Provider value={{ cart, setcart, updatecart }}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
