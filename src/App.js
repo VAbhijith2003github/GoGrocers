@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import Home from "./components/pages/home";
 import Cart from "./components/pages/cart";
@@ -28,7 +27,7 @@ export const MyContext = createContext();
 const App = () => {
   const [cart, setCart] = useState([]);
 
-  const updateCart = (item) => {
+  const updatecart = (item) => {
     const existingItemIndex = cart.findIndex(
       (cartItem) => cartItem.name === item.name
     );
@@ -46,7 +45,7 @@ const App = () => {
 
   return (
     <div>
-      <MyContext.Provider value={{ cart, setCart, updateCart }}>
+      <MyContext.Provider value={{ cart, setCart, updatecart }}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
