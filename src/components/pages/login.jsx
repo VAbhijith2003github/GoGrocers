@@ -10,6 +10,8 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -42,14 +44,23 @@ function Login() {
         const userEmail = user.email;
         const userName = user.displayName;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated",true);
+        localStorage.setItem("authenticated", true);
         localStorage.setItem("name", userName);
-        localStorage.setItem("email",userEmail);
+        localStorage.setItem("email", userEmail);
         navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert(errorMessage);
+        toast.error(errorMessage, {
+          position: "top-right",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -61,9 +72,9 @@ function Login() {
         const userEmail = user.email;
         const token = userCredential.idToken;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated",true);
+        localStorage.setItem("authenticated", true);
         localStorage.setItem("name", userName);
-        localStorage.setItem("email",userEmail);
+        localStorage.setItem("email", userEmail);
         navigate("/");
       })
       .catch((error) => {
@@ -103,7 +114,9 @@ function Login() {
             value={formData.password}
             onChange={handleChange}
           />
-          <button className="loginbutton" type="submit">Login</button>
+          <button className="loginbutton" type="submit">
+            Login
+          </button>
         </form>
         <hr className="loginline" id="line" />
         <button className="loginbutton" id="google" onClick={Loginwithgoogle}>
@@ -115,6 +128,18 @@ function Login() {
         </Link>
         <div></div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

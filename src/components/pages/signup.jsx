@@ -11,6 +11,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -36,7 +38,16 @@ function SignUp() {
     const { email, password, repassword } = formData;
 
     if (password !== repassword) {
-      alert("Check password entry");
+      toast.error("Check password entered", {
+        position: "top-center",
+        autoClose: 10000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
 
@@ -49,18 +60,36 @@ function SignUp() {
             // Signed in
             const user = userCredential.user;
             console.log(user.email);
-            localStorage.setItem("useremail",user.email);
-            localStorage.setItem("authenticated",true);
+            localStorage.setItem("useremail", user.email);
+            localStorage.setItem("authenticated", true);
             navigate("/");
           })
           .catch((error) => {
             const errorMessage = error.message;
-            alert(errorMessage);
+            toast.error(errorMessage, {
+              position: "top-center",
+              autoClose: 10000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
           });
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert(errorMessage); // Display the error message, not the entire error object
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -70,7 +99,7 @@ function SignUp() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated",true);
+        localStorage.setItem("authenticated", true);
         navigate("/");
       })
       .catch((error) => {
@@ -131,6 +160,18 @@ function SignUp() {
         </Link>
         <div></div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

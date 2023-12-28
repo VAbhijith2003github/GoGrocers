@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../../styles.css";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Addresses() {
   const [query, setQuery] = useState("");
@@ -23,11 +25,29 @@ function Addresses() {
 
       if (response.ok) {
         console.log("Query submitted successfully");
-        alert("query submitted");
+        toast.error("Address submitted", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         navigate("/success");
       } else {
         console.error("Failed to submit query");
-        alert("failed to submit query");
+        toast.error("Failed to submit address", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
     } catch (error) {
       console.error("Error:", error);
@@ -136,6 +156,18 @@ function Addresses() {
             </form>
           </div>
         </section>
+        <ToastContainer
+          position="top-center"
+          autoClose={10000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </>
   );

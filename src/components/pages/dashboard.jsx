@@ -10,6 +10,8 @@ import logout from "../../images/accmedia/logout.png";
 import { app } from "../../firebase-config.js";
 import { getAuth, signOut } from "firebase/auth";
 import "../../styles.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function DashBoard() {
   let navigate = useNavigate();
@@ -30,7 +32,16 @@ function DashBoard() {
         navigate("/");
       })
       .catch((error) => {
-        alert(error);
+        toast.error("error", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   }
 
@@ -133,6 +144,18 @@ function DashBoard() {
             Logout
           </button>
         </section>
+        <ToastContainer
+          position="top-center"
+          autoClose={10000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </>
   );
