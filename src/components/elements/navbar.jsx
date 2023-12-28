@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 const Navbarcomp = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loginLink, setLoginLink] = useState("/login");
+  const [name, setName] = useState("You");
 
   useEffect(() => {
     onLoad();
@@ -16,7 +17,13 @@ const Navbarcomp = () => {
 
   function onLoad() {
     console.log(authenticated);
-    if (localStorage.getItem("authenticated") === "true") {
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
+    if(name && name!=="" && name!=="null")
+    {
+      setName(name);
+    }
+    if (localStorage.getItem("authenticated") === "true" && token) {
       setAuthenticated(true);
       setLoginLink("/dashboard");
     }
@@ -58,7 +65,7 @@ const Navbarcomp = () => {
         ) : (
           <>
             <img src={login} alt="login" className="navicon" />
-            You
+            {name}
           </>
         )}
       </Link>

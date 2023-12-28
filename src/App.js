@@ -21,6 +21,8 @@ import ContactUs from "./components/pages/contactus";
 import Addresses from "./components/pages/addresses";
 import Loginprompt from "./components/pages/loginprompt";
 import ComingSoon from "./components/pages/comingsoon";
+import Profile from "./components/pages/profile";
+import EditProfile from "./components/pages/editprofile";
 
 export const MyContext = createContext();
 
@@ -65,7 +67,8 @@ const App = () => {
                 <Route path="/profile/addresses" element={<Addresses/>} />
                 <Route path="/profile/rewards" element={<ComingSoon/>} />
                 <Route path="/profile/yourorders" element={<ComingSoon/>} />
-                <Route path="/profile" element={<ComingSoon/>} />
+                <Route path="/profile" element={<Profile/>} />
+                <Route path="/profile/edit" element={<EditProfile/>} />
               </>
             )}
             {!hasAccessToken && (
@@ -76,6 +79,7 @@ const App = () => {
                 <Route path="/profile/rewards" element={<Loginprompt/>} />
                 <Route path="/profile/rewards" element={<Loginprompt/>} />
                 <Route path="/profile" element={<Loginprompt/>} />
+                <Route path="/profile/edit" element={<Loginprompt/>} />
               </>
             )}
             <Route path="*" element={<Page404 />} />

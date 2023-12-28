@@ -39,8 +39,12 @@ function Login() {
         // Signed in
         const user = userCredential.user;
         const token = user.getIdToken();
-        localStorage.setItem("token",token);
+        const userEmail = user.email;
+        const userName = user.displayName;
+        localStorage.setItem("token", token);
         localStorage.setItem("authenticated",true);
+        localStorage.setItem("name", userName);
+        localStorage.setItem("email",userEmail);
         navigate("/");
       })
       .catch((error) => {
@@ -51,11 +55,15 @@ function Login() {
 
   const Loginwithgoogle = async () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userName = user.displayName;
+        const userEmail = user.email;
+        const token = userCredential.idToken;
         localStorage.setItem("token", token);
         localStorage.setItem("authenticated",true);
+        localStorage.setItem("name", userName);
+        localStorage.setItem("email",userEmail);
         navigate("/");
       })
       .catch((error) => {

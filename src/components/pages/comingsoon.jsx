@@ -10,6 +10,7 @@ function Addresses() {
   const [imageSize, setImageSize] = useState(0.8);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const timer = setTimeout(() => {
       setImageSize(0.85); // Set the image size to 1 after 3 seconds
     }, 3000);
