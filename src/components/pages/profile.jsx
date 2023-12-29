@@ -7,6 +7,7 @@ function Profile() {
   const navigate = useNavigate();
   const name = localStorage.getItem("name");
   const email = localStorage.getItem("email");
+  const uid = localStorage.getItem("uid");
 
   const [user, setUser] = useState({
     name: name,
@@ -15,15 +16,15 @@ function Profile() {
   });
 
   useEffect(() => {
-    if(name==="null")
-    {
-        setUser((prevUser) => ({
-            ...prevUser,
-            name: "Not Set"
-          }));
+    console.log(uid);
+    if (name === "null") {
+      setUser((prevUser) => ({
+        ...prevUser,
+        name: "Not Set",
+      }));
     }
   }, []);
-    
+
   return (
     <>
       <NavBar />

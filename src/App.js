@@ -1,10 +1,6 @@
 import React, { createContext, useState } from "react";
 import $ from "jquery";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/home";
 import Cart from "./components/pages/cart";
 import Login from "./components/pages/login";
@@ -64,22 +60,22 @@ const App = () => {
               <>
                 <Route path="/dashboard" element={<DashBoard />} />
                 <Route path="/contactus" element={<ContactUs />} />
-                <Route path="/profile/addresses" element={<Addresses/>} />
-                <Route path="/profile/rewards" element={<ComingSoon/>} />
-                <Route path="/profile/yourorders" element={<ComingSoon/>} />
-                <Route path="/profile" element={<Profile/>} />
-                <Route path="/profile/edit" element={<EditProfile/>} />
+                <Route path="/profile/addresses" element={<Addresses />} />
+                <Route path="/profile/rewards" element={<ComingSoon />} />
+                <Route path="/profile/yourorders" element={<ComingSoon />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/edit" element={<EditProfile />} />
               </>
             )}
             {!hasAccessToken && (
               <>
                 <Route path="/dashboard" element={<Loginprompt />} />
                 <Route path="/contactus" element={<Loginprompt />} />
-                <Route path="/profile/addresses" element={<Loginprompt/>} />
-                <Route path="/profile/rewards" element={<Loginprompt/>} />
-                <Route path="/profile/rewards" element={<Loginprompt/>} />
-                <Route path="/profile" element={<Loginprompt/>} />
-                <Route path="/profile/edit" element={<Loginprompt/>} />
+                <Route path="/profile/addresses" element={<Loginprompt />} />
+                <Route path="/profile/rewards" element={<Loginprompt />} />
+                <Route path="/profile/rewards" element={<Loginprompt />} />
+                <Route path="/profile" element={<Loginprompt />} />
+                <Route path="/profile/edit" element={<Loginprompt />} />
               </>
             )}
             <Route path="*" element={<Page404 />} />

@@ -16,7 +16,7 @@ const Navbarcomp = () => {
   }, []);
 
   function onLoad() {
-    console.log(authenticated);
+    // console.log(authenticated);
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("name");
     if(name && name!=="" && name!=="null")

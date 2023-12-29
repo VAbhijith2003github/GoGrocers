@@ -38,15 +38,16 @@ function Login() {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         const token = user.getIdToken();
         const userEmail = user.email;
         const userName = user.displayName;
+        const userid = user.uid;
         localStorage.setItem("token", token);
         localStorage.setItem("authenticated", true);
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
+        localStorage.setItem("uid", userid);
         navigate("/");
       })
       .catch((error) => {
@@ -70,11 +71,13 @@ function Login() {
         const user = userCredential.user;
         const userName = user.displayName;
         const userEmail = user.email;
+        const userid = user.uid;
         const token = userCredential.idToken;
         localStorage.setItem("token", token);
         localStorage.setItem("authenticated", true);
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
+        localStorage.setItem("uid", userid);
         navigate("/");
       })
       .catch((error) => {
