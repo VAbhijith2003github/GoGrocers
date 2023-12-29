@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateUser from "../firestore.operation.files/createuser.js";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -57,17 +58,23 @@ function SignUp() {
         console.log(user.email);
         signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-            // Signed in
             const user = userCredential.user;
-            console.log(user.email);
-            localStorage.setItem("useremail", user.email);
+            const token = user.getIdToken();
+            const userEmail = user.email;
+            const userName = user.displayName;
+            const userid = user.uid;
+            localStorage.setItem("token", token);
             localStorage.setItem("authenticated", true);
+            localStorage.setItem("name", userName);
+            localStorage.setItem("email", userEmail);
+            localStorage.setItem("uid", userid);
+            CreateUser(userid, userEmail, userName);
             navigate("/");
           })
           .catch((error) => {
             const errorMessage = error.message;
             toast.error(errorMessage, {
-              position: "top-center",
+              position: "top-right",
               autoClose: 10000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -95,11 +102,18 @@ function SignUp() {
 
   const Loginwithgoogle = async () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userName = user.displayName;
+        const userEmail = user.email;
+        const userid = user.uid;
+        const token = userCredential.idToken;
         localStorage.setItem("token", token);
         localStorage.setItem("authenticated", true);
+        localStorage.setItem("name", userName);
+        localStorage.setItem("email", userEmail);
+        localStorage.setItem("uid", userid);
+        CreateUser(userid, userEmail, userName);
         navigate("/");
       })
       .catch((error) => {

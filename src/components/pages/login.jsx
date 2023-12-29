@@ -12,8 +12,11 @@ import {
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreateUser from "../firestore.operation.files/createuser.js";
+
 
 function Login() {
+  
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
@@ -48,6 +51,7 @@ function Login() {
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
+        CreateUser(userid, userEmail, userName);
         navigate("/");
       })
       .catch((error) => {
@@ -78,6 +82,7 @@ function Login() {
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
+        CreateUser(userid, userEmail, userName);
         navigate("/");
       })
       .catch((error) => {
