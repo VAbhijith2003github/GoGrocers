@@ -6,45 +6,77 @@ import pp from "../../images/packaged_product images/ppimg";
 import { MyContext } from "../../App";
 
 function Vegetables() {
-  const { updatecart } = useContext(MyContext);
+  const { cart, updatecart, updatecartdec } = useContext(MyContext);
+
+  const isItemInCart = (itemName) => {
+    return cart.some((item) => item.name === itemName);
+  };
+
   return (
     <div className="vegetables">
       <Navbar />
       <section className="vegetablessec">
         <section className="cardsproduct">
           <div className="row">
-            {pp.map((pp, index) => (
+            {pp.map((ppItem, index) => (
               <div
                 key={index}
                 className="col-lg-3 col-md-4 col-sm-6 colelement cardbg"
               >
                 <div className="imgdiv">
-                  <img className="cardimgproduct" src={pp.src} alt="pic" />
+                  <img className="cardimgproduct" src={ppItem.src} alt="pic" />
                 </div>
-                <p className="cardtextproduct">{pp.name}</p>
+                <p className="cardtextproduct">{ppItem.name}</p>
                 <div className="infodev">
-                  <button
-                    className="productaddtocart"
-                    onClick={() => {
-                      updatecart({
-                        name: pp.name,
-                        price: pp.price,
-                        src: pp.src,
-                        priceint: pp.priceint,
-                        weight: pp.weight,
-                        unit: "gm",
-                        type: "veg",
-                      });
+                  {isItemInCart(ppItem.name) ? (
+                    // Display + and - buttons if the item is in the cart
+                    <>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecart(ppItem)}
+                      >
+                        +
+                      </button>
+                      <button className="cartbuttons" style={{ scale: "0.8" }}>
+                        {
+                          cart.find((item) => item.name === ppItem.name)
+                            ?.frequency
+                        }
+                      </button>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecartdec(ppItem)}
+                      >
+                        -
+                      </button>
+                    </>
+                  ) : (
+                    // Display ADD button if the item is not in the cart
+                    <button
+                      className="productaddtocart"
+                      onClick={() => {
+                        updatecart({
+                          name: ppItem.name,
+                          price: ppItem.price,
+                          src: ppItem.src,
+                          priceint: ppItem.priceint,
+                          weight: ppItem.weight,
+                          unit: "gm",
+                          type: "packaged food",
+                        });
 
-                      $("#addtocart").addClass("animatecart");
-                      setTimeout(function () {
-                        $("#addtocart").removeClass("animatecart");
-                      }, 100);
-                    }}
-                  >
-                    ADD
-                  </button>
-                  <h4 className="productprice">{pp.price}</h4>
+                        $("#addtocart").addClass("animatecart");
+                        setTimeout(function () {
+                          $("#addtocart").removeClass("animatecart");
+                        }, 100);
+                      }}
+                    >
+                      ADD
+                    </button>
+                  )}
+                  <h4 className="productprice">{ppItem.price}</h4>
                 </div>
               </div>
             ))}

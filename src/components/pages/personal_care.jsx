@@ -6,45 +6,77 @@ import pc from "../../images/personal_care images/pcimg";
 import { MyContext } from "../../App";
 
 function Personal_care() {
-  const { updatecart } = useContext(MyContext);
+  const { cart, updatecart, updatecartdec } = useContext(MyContext);
+
+  const isItemInCart = (itemName) => {
+    return cart.some((item) => item.name === itemName);
+  };
+
   return (
     <div className="vegetables">
       <Navbar />
       <section className="vegetablessec">
         <section className="cardsproduct">
           <div className="row">
-            {pc.map((pc, index) => (
+            {pc.map((pcItem, index) => (
               <div
                 key={index}
                 className="col-lg-3 col-md-4 col-sm-6 colelement cardbg"
               >
                 <div className="imgdiv">
-                  <img className="cardimgproduct" src={pc.src} alt="pic" />
+                  <img className="cardimgproduct" src={pcItem.src} alt="pic" />
                 </div>
-                <p className="cardtextproduct">{pc.name}</p>
+                <p className="cardtextproduct">{pcItem.name}</p>
                 <div className="infodev">
-                  <button
-                    className="productaddtocart"
-                    onClick={() => {
-                      updatecart({
-                        name: pc.name,
-                        price: pc.price,
-                        src: pc.src,
-                        priceint: pc.priceint,
-                        weight: pc.weight,
-                        unit: "gm",
-                        type: "pc",
-                      });
+                  {isItemInCart(pcItem.name) ? (
+                    // Display + and - buttons if the item is in the cart
+                    <>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecart(pcItem)}
+                      >
+                        +
+                      </button>
+                      <button className="cartbuttons" style={{ scale: "0.8" }}>
+                        {
+                          cart.find((item) => item.name === pcItem.name)
+                            ?.frequency
+                        }
+                      </button>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecartdec(pcItem)}
+                      >
+                        -
+                      </button>
+                    </>
+                  ) : (
+                    // Display ADD button if the item is not in the cart
+                    <button
+                      className="productaddtocart"
+                      onClick={() => {
+                        updatecart({
+                          name: pcItem.name,
+                          price: pcItem.price,
+                          src: pcItem.src,
+                          priceint: pcItem.priceint,
+                          weight: pcItem.weight,
+                          unit: "gm",
+                          type: "personal care",
+                        });
 
-                      $("#addtocart").addClass("animatecart");
-                      setTimeout(function () {
-                        $("#addtocart").removeClass("animatecart");
-                      }, 100);
-                    }}
-                  >
-                    ADD
-                  </button>
-                  <h4 className="productprice">{pc.price}</h4>
+                        $("#addtocart").addClass("animatecart");
+                        setTimeout(function () {
+                          $("#addtocart").removeClass("animatecart");
+                        }, 100);
+                      }}
+                    >
+                      ADD
+                    </button>
+                  )}
+                  <h4 className="productprice">{pcItem.price}</h4>
                 </div>
               </div>
             ))}

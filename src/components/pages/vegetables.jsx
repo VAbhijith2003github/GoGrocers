@@ -6,7 +6,11 @@ import vegetables from "../../images/vegetable images/vegimg";
 import { MyContext } from "../../App";
 
 function Vegetables() {
-  const { updatecart } = useContext(MyContext);
+  const { cart, updatecart, updatecartdec } = useContext(MyContext);
+
+  const isItemInCart = (itemName) => {
+    return cart.some((item) => item.name === itemName);
+  };
 
   return (
     <div className="vegetables">
@@ -28,7 +32,32 @@ function Vegetables() {
                 </div>
                 <p className="cardtextproduct">{vegetable.name}</p>
                 <div className="infodev">
-                  <>
+                  {isItemInCart(vegetable.name) ? (
+                    // Display + and - buttons if the item is in the cart
+                    <>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecart(vegetable)}
+                      >
+                        +
+                      </button>
+                      <button className="cartbuttons" style={{ scale: "0.8" }}>
+                        {
+                          cart.find((item) => item.name === vegetable.name)
+                            ?.frequency
+                        }
+                      </button>
+                      <button
+                        className="cartbuttons"
+                        style={{ scale: "0.8" }}
+                        onClick={() => updatecartdec(vegetable)}
+                      >
+                        -
+                      </button>
+                    </>
+                  ) : (
+                    // Display ADD button if the item is not in the cart
                     <button
                       className="productaddtocart"
                       onClick={() => {
@@ -39,7 +68,7 @@ function Vegetables() {
                           priceint: vegetable.priceint,
                           weight: vegetable.weight,
                           unit: "g",
-                          type: "veg",
+                          type: "vegetables",
                         });
 
                         $("#addtocart").addClass("animatecart");
@@ -50,8 +79,7 @@ function Vegetables() {
                     >
                       ADD
                     </button>
-                  </>
-
+                  )}
                   <h4 className="productprice">{vegetable.price}</h4>
                 </div>
               </div>

@@ -52,7 +52,9 @@ function Login() {
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
         CreateUser(userid, userEmail, userName);
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -83,7 +85,9 @@ function Login() {
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
         CreateUser(userid, userEmail, userName);
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       })
       .catch((error) => {
         const errorCode = error.code;
