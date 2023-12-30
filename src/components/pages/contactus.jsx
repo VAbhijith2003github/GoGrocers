@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GetUser from "../firestore.operation.files/getuser.js";
+import CreateQuery from "../firestore.operation.files/createquery.js";
 
 function ContactUs() {
   const [query, setQuery] = useState("");
@@ -11,47 +13,24 @@ function ContactUs() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const apiUrl = "";
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ query }),
-      });
-
-      if (response.ok) {
-        console.log("Query submitted successfully");
-        toast.error("query submitted", {
-          position: "top-center",
-          autoClose: 10000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        navigate("/success");
-      } else {
-        console.error("Failed to submit query");
-        toast.error('Failed to submit query', {
-          position: "top-center",
-          autoClose: 10000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    const userid = localStorage.getItem("uid");
+    const userdetails = await GetUser(userid);
+    const userEmail = userdetails.email;
+    const query = e.target.query.value;
+    CreateQuery(userid, userEmail, query);
+    toast.success("Query sent! The team will get back to you shortly", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 3000);
   };
 
   return (
@@ -61,7 +40,7 @@ function ContactUs() {
         <section className="dashboardcards" id="contactussec">
           <div className="contactus">
             <h4>Contact Us</h4>
-            <form>
+            <form onSubmit={handleSubmit}>
               <textarea
                 id="contentquery"
                 autoComplete="off"
@@ -69,6 +48,7 @@ function ContactUs() {
                 rows="4"
                 wrap="soft"
                 value={query}
+                name="query"
                 onChange={(e) => setQuery(e.target.value)}
               ></textarea>
               <br />

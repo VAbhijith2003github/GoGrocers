@@ -59,7 +59,7 @@ function EditProfile() {
     });
     setTimeout(() => {
       navigate("/profile");
-    }, 1000);
+    }, 3000);
   };
   return (
     <>

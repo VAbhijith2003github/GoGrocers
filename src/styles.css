@@ -631,8 +631,7 @@ h5 {
   background-color: white;
   cursor: pointer;
 }
-.dashboardcard:hover{
-  
+.dashboardcard:hover {
   cursor: pointer;
   scale: 1.03;
   box-shadow: 0 0 10px rgba(118, 118, 118, 0.2);
@@ -714,18 +713,15 @@ textarea::-webkit-scrollbar-thumb {
 textarea::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
-@media screen and (max-width:375px) {
-  .contactus
-  {
-    margin-top: 150px;  
+@media screen and (max-width: 375px) {
+  .contactus {
+    margin-top: 150px;
     padding-left: 0px;
   }
-  #contactusbutton
-  {
+  #contactusbutton {
     scale: 0.75;
   }
-  #contactussec
-  {
+  #contactussec {
     display: flex !important;
     justify-content: center !important;
   }
@@ -822,8 +818,7 @@ textarea::-webkit-scrollbar-track {
   }
 }
 /* _______________________________________________________..-contact us-..___________________________________________________*/
-#comingsoon
-{
+#comingsoon {
   display: flex;
   justify-content: center;
 }
