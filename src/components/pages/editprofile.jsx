@@ -46,7 +46,7 @@ function EditProfile() {
     const name = e.target.name.value;
     const phonenumber = e.target.phonenumber.value;
     const uid = localStorage.getItem("uid");
-    UpdateUser(uid, name, phonenumber);
+    await UpdateUser(uid, name, phonenumber);
     toast.success("Updated", {
       position: "top-right",
       autoClose: 5000,

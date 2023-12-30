@@ -19,23 +19,45 @@ import Loginprompt from "./components/pages/loginprompt";
 import ComingSoon from "./components/pages/comingsoon";
 import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editprofile";
+import UpdateCart from "./components/firestore.operation.files/updatecart";
 
 export const MyContext = createContext();
 
 const App = () => {
   const [cart, setcart] = useState([]);
+  const uid = localStorage.getItem("uid");
 
-  const updatecart = (item) => {
+  const updatecart = async (item) => {
     const existingItemIndex = cart.findIndex(
       (cartItem) => cartItem.name === item.name
     );
+    let updatedCart = [...cart];
+    if (existingItemIndex >= 0) {
+      updatedCart = [...cart];
+      updatedCart[existingItemIndex].frequency++;
+    } else {
+      updatedCart = [...cart];
+      var newItem = { ...item, frequency: 1 };
+      updatedCart = [newItem, ...cart];
+    }
+    setcart(updatedCart);
+    await UpdateCart(uid, updatedCart);
+  };
+
+  const updatecartdec = (item) => {
+    const existingItemIndex = cart.findIndex(
+      (cartItem) => cartItem.name === item.name
+    );
+
     if (existingItemIndex >= 0) {
       const updatedCart = [...cart];
-      updatedCart[existingItemIndex].frequency++;
+      if (updatedCart[existingItemIndex].frequency > 1) {
+        updatedCart[existingItemIndex].frequency--;
+      } else {
+        updatedCart.splice(existingItemIndex, 1);
+      }
       setcart(updatedCart);
-    } else {
-      var newItem = { ...item, frequency: 1 };
-      setcart((cart) => [newItem, ...cart]);
+      UpdateCart(uid, updatedCart);
     }
   };
 
@@ -43,7 +65,7 @@ const App = () => {
 
   return (
     <div>
-      <MyContext.Provider value={{ cart, setcart, updatecart }}>
+      <MyContext.Provider value={{ cart, setcart, updatecart, updatecartdec }}>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />

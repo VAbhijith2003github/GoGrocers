@@ -6,6 +6,7 @@ import Select from "react-select";
 
 const Cart = () => {
   const { setcart, cart } = useContext(MyContext);
+  const { updatecart, updatecartdec } = useContext(MyContext);
   const options = [
     { value: "Delhi", label: "Delhi" },
     { value: "Mumbai", label: "Mumbai" },
@@ -91,13 +92,9 @@ const Cart = () => {
                     className="cartbuttons"
                     style={{ width: "3%" }}
                     onClick={() => {
-                      if (item.frequency === 5) {
-                        alert("Maximum quantity reached !!");
-                      } else {
-                        const newCart = [...cart];
-                        newCart[index].frequency++;
-                        setcart(newCart);
-                      }
+                      updatecart({
+                        name: item.name,
+                      });
                     }}
                   >
                     +
@@ -113,15 +110,9 @@ const Cart = () => {
                     className="cartbuttons"
                     style={{ width: "3%" }}
                     onClick={() => {
-                      if (item.frequency === 1) {
-                        const newCart = [...cart];
-                        newCart.splice(index, 1);
-                        setcart(newCart);
-                      } else {
-                        const newCart = [...cart];
-                        newCart[index].frequency--;
-                        setcart(newCart);
-                      }
+                      updatecartdec({
+                        name: item.name,
+                      });
                     }}
                   >
                     -
