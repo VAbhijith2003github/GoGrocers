@@ -2,7 +2,6 @@ import "../../styles.css";
 import { Link } from "react-router-dom";
 import login from "../../images/user.png";
 import cart from "../../images/cart.png";
-import $ from "jquery";
 import search from "../../images/search.png";
 import { useState, useEffect } from "react";
 
@@ -19,9 +18,9 @@ const Navbarcomp = () => {
     // console.log(authenticated);
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("name");
-    if(name && name!=="" && name!=="null")
-    {
-      setName(name);
+    if (name && name !== "" && name !== "null") {
+      const truncatedName = name.substring(0, 20);
+      setName(truncatedName);
     }
     if (localStorage.getItem("authenticated") === "true" && token) {
       setAuthenticated(true);

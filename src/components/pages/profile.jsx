@@ -2,27 +2,47 @@ import React, { useEffect, useState } from "react";
 import "../../styles.css";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
+import GetUser from "../firestore.operation.files/getuser.js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Profile() {
   const navigate = useNavigate();
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
   const uid = localStorage.getItem("uid");
 
   const [user, setUser] = useState({
-    name: name,
-    mobilenumber: "Not Set",
-    email: email,
+    name: "",
+    phonenumber: "Not Set",
+    email: "",
   });
 
   useEffect(() => {
-    console.log(uid);
-    if (name === "null") {
-      setUser((prevUser) => ({
-        ...prevUser,
-        name: "Not Set",
-      }));
-    }
+    const fetchUserData = async () => {
+      try {
+        console.log(uid);
+        const userdetails = await GetUser(uid);
+        setUser({
+          name: userdetails.name,
+          phonenumber: userdetails.phonenumber
+            ? userdetails.phonenumber
+            : "Not Set",
+          email: userdetails.email,
+        });
+      } catch (error) {
+        toast.error("Error fetching user data", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   return (
@@ -36,8 +56,8 @@ function Profile() {
               <div>
                 <label htmlFor="name">full Name</label>
                 <p>{user.name}</p>
-                <label htmlFor="mobilenumber">mobile number</label>
-                <p>{user.mobilenumber}</p>
+                <label htmlFor="phonenumber">phone number</label>
+                <p>{user.phonenumber}</p>
               </div>
             </div>
             <div className="addressinput">
@@ -57,6 +77,18 @@ function Profile() {
             </button>
           </div>
         </section>
+        <ToastContainer
+          position="top-center"
+          autoClose={10000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </>
   );

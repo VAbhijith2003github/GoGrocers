@@ -32,7 +32,7 @@ function DashBoard() {
         navigate("/");
       })
       .catch((error) => {
-        toast.error("error", {
+        toast.error(error, {
           position: "top-center",
           autoClose: 10000,
           hideProgressBar: false,

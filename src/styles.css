@@ -629,6 +629,13 @@ h5 {
   margin: 25px;
   font-size: 15px;
   background-color: white;
+  cursor: pointer;
+}
+.dashboardcard:hover{
+  
+  cursor: pointer;
+  scale: 1.03;
+  box-shadow: 0 0 10px rgba(118, 118, 118, 0.2);
 }
 .card-grid {
   display: grid;

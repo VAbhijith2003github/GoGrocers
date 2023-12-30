@@ -3,6 +3,7 @@ import {
     collection,
     doc,
     getDoc,
+    updateDoc
   } from "firebase/firestore";
   import { app } from "../../firebase-config";
   
@@ -10,8 +11,6 @@ import {
     try {
       const db = getFirestore(app);
       const usersCollection = collection(db, "users");
-  
-      // Get the document with the specified UID
       const userDocRef = doc(usersCollection, userid);
       const userDocSnapshot = await getDoc(userDocRef);
   
