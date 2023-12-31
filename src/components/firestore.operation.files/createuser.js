@@ -16,6 +16,7 @@ async function CreateUser(userid, userEmail, userName) {
 
     if (!userDocSnapshot.exists()) {
       const userData = {
+        address:[],
         cart: [],
         uid: userid,
         email: userEmail,

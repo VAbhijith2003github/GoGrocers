@@ -1,58 +1,22 @@
 import React, { useState } from "react";
 import "../../styles.css";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UpdateAddress from "../firestore.operation.files/updateaddress.js";
 
 function Addresses() {
-  const [query, setQuery] = useState("");
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const apiUrl = "";
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ query }),
-      });
-
-      if (response.ok) {
-        console.log("Query submitted successfully");
-        toast.error("Address submitted", {
-          position: "top-center",
-          autoClose: 10000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-        navigate("/success");
-      } else {
-        console.error("Failed to submit query");
-        toast.error("Failed to submit address", {
-          position: "top-center",
-          autoClose: 10000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  const [formData, setFormData] = useState({
+    name: "",
+    phonenumber: "",
+    pincode: "",
+    street: "",
+    landmark: "",
+    city: "",
+    state: "",
+  });
 
   const statesInIndia = [
     "Andhra Pradesh",
@@ -91,6 +55,49 @@ function Addresses() {
     "Puducherry",
   ];
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const uid = localStorage.getItem("uid");
+    const address = formData;
+    try {
+      UpdateAddress(uid, address);
+      toast.success("Address added successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      setTimeout(() => {
+        navigate("/profile");
+      }, 3000);
+    } catch (error) {
+      console.error("Error adding address:", error);
+      toast.error("Error adding address", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -98,48 +105,84 @@ function Addresses() {
         <section className="dashboardcards" id="addresssec">
           <div className="address">
             <h4>Add Address</h4>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="addressinput">
                 <div>
-                  <label htmlFor="name">full Name</label>
+                  <label htmlFor="name">Full Name</label>
                   <br />
-                  <input type="text" name="fullname" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
                   <br />
                 </div>
                 <div>
-                  <label htmlFor="name" id="statelabel">
-                    mobile number
+                  <label htmlFor="phonenumber" id="statelabel">
+                    Phone Number
                   </label>
                   <br />
-                  <input type="text" name="mobile number" id="phonenumber" />
+                  <input
+                    type="text"
+                    name="phonenumber"
+                    value={formData.phonenumber}
+                    onChange={handleChange}
+                    id="phonenumber"
+                  />
                   <br />
                 </div>
               </div>
-              <label htmlFor="pincode">pincode</label>
+              <label htmlFor="pincode">Pincode</label>
               <br />
-              <input type="number" name="pincode" />
+              <input
+                type="number"
+                name="pincode"
+                value={formData.pincode}
+                onChange={handleChange}
+              />
               <br />
-              <label htmlFor="street">house / street</label>
+              <label htmlFor="street">House / Street</label>
               <br />
-              <input type="text" name="street" />
+              <input
+                type="text"
+                name="street"
+                value={formData.street}
+                onChange={handleChange}
+              />
               <br />
-              <label htmlFor="landmark">landmark</label>
+              <label htmlFor="landmark">Landmark</label>
               <br />
-              <input type="text" name="landmark" />
+              <input
+                type="text"
+                name="landmark"
+                value={formData.landmark}
+                onChange={handleChange}
+              />
               <br />
               <div className="addressinput">
                 <div>
-                  <label htmlFor="city">city</label>
+                  <label htmlFor="city">City</label>
                   <br />
-                  <input type="text" name="city" />
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                  />
                   <br />
                 </div>
                 <div>
                   <label htmlFor="state" id="statelabel">
-                    state
+                    State
                   </label>
                   <br />
-                  <select name="state" id="state">
+                  <select
+                    name="state"
+                    id="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                  >
                     <option value="">Select a state</option>
                     {statesInIndia.map((state, index) => (
                       <option key={index} value={state}>
