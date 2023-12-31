@@ -11,10 +11,10 @@ const Navbarcomp = () => {
   const [name, setName] = useState("You");
 
   useEffect(() => {
-    onLoad();
+  onLoad();
   }, []);
 
-  function onLoad() {
+  async function onLoad() {
     // console.log(authenticated);
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("name");
@@ -23,7 +23,7 @@ const Navbarcomp = () => {
       setName(truncatedName);
     }
     if (localStorage.getItem("authenticated") === "true" && token) {
-      setAuthenticated(true);
+      setAuthenticated("true");
       setLoginLink("/dashboard");
     }
   }

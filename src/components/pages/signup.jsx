@@ -14,11 +14,15 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateUser from "../firestore.operation.files/createuser.js";
+import UpdateCart from "../firestore.operation.files/updatecart.js";
+import { MyContext } from "../../App";
+import { useContext } from "react";
 
 function SignUp() {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
+  const { cart } = useContext(MyContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -64,14 +68,15 @@ function SignUp() {
             const userName = user.displayName;
             const userid = user.uid;
             localStorage.setItem("token", token);
-            localStorage.setItem("authenticated", true);
+            localStorage.setItem("authenticated", "true");
             localStorage.setItem("name", userName);
             localStorage.setItem("email", userEmail);
             localStorage.setItem("uid", userid);
             CreateUser(userid, userEmail, userName);
-            setTimeout(() => {
-              navigate("/");
-            }, 1500);
+            UpdateCartonLogin(userid, cart);
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
           })
           .catch((error) => {
             const errorMessage = error.message;
@@ -102,6 +107,11 @@ function SignUp() {
       });
   };
 
+  async function UpdateCartonLogin(uid, cart) {
+    UpdateCart(uid, cart);
+  }
+
+
   const Loginwithgoogle = async () => {
     signInWithPopup(auth, provider)
       .then((userCredential) => {
@@ -111,7 +121,7 @@ function SignUp() {
         const userid = user.uid;
         const token = userCredential.idToken;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated", true);
+        localStorage.setItem("authenticated", "true");
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);

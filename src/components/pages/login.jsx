@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,12 +13,14 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateUser from "../firestore.operation.files/createuser.js";
+import UpdateCart from "../firestore.operation.files/updatecart.js";
+import { MyContext } from "../../App";
 
 function Login() {
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
-
+  const { cart } = useContext(MyContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,11 +47,12 @@ function Login() {
         const userName = user.displayName;
         const userid = user.uid;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated", true);
+        localStorage.setItem("authenticated", "true");
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
         CreateUser(userid, userEmail, userName);
+        UpdateCartonLogin(userid, cart);
         setTimeout(() => {
           navigate("/");
         }, 1500);
@@ -73,6 +76,10 @@ function Login() {
       });
   };
 
+  async function UpdateCartonLogin(uid, cart) {
+    UpdateCart(uid, cart);
+  }
+
   const Loginwithgoogle = async () => {
     signInWithPopup(auth, provider)
       .then((userCredential) => {
@@ -82,11 +89,12 @@ function Login() {
         const userid = user.uid;
         const token = userCredential.idToken;
         localStorage.setItem("token", token);
-        localStorage.setItem("authenticated", true);
+        localStorage.setItem("authenticated", "true");
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("uid", userid);
         CreateUser(userid, userEmail, userName);
+        UpdateCartonLogin(userid, cart);
         setTimeout(() => {
           navigate("/");
         }, 1500);
