@@ -1,8 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles.css";
 import Navbar from "../elements/navbar";
 import { MyContext } from "../../App";
 import Select from "react-select";
+import GetUser from "../firestore.operation.files/getuser";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const { setcart, cart } = useContext(MyContext);
@@ -35,6 +38,7 @@ const Cart = () => {
   const [deliverycharge] = useState(50);
   const [selectedCoupon, setselectedCoupon] = useState("");
   const [discount, setdiscount] = useState(0);
+
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.priceint * item.frequency,
     0
@@ -46,6 +50,29 @@ const Cart = () => {
       return sum;
     }
   }, 0);
+
+  useEffect(() => {
+    const uid = localStorage.getItem("uid");
+    const fetchUserData = async () => {
+      try {
+        console.log(uid);
+        const userdetails = await GetUser(uid);
+        setcart(userdetails.cart);
+      } catch (error) {
+        toast.error("Error fetching user data", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    };
+    fetchUserData();
+  }, [cart]);
 
   return (
     <div className="cart">
@@ -233,6 +260,18 @@ const Cart = () => {
           </a>
         </p>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
