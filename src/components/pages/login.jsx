@@ -14,9 +14,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateUser from "../firestore.operation.files/createuser.js";
 
-
 function Login() {
-  
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
@@ -57,7 +55,11 @@ function Login() {
         }, 1500);
       })
       .catch((error) => {
-        const errorMessage = error.message;
+        let errorMessage = error.message;
+        console.log(errorMessage);
+        if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+          errorMessage = "invalid credentials";
+        }
         toast.error(errorMessage, {
           position: "top-right",
           autoClose: 10000,
@@ -90,9 +92,17 @@ function Login() {
         }, 1500);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage, errorCode);
+        toast.error(errorMessage, {
+          position: "top-right",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
