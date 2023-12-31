@@ -54,25 +54,27 @@ const Cart = () => {
   useEffect(() => {
     const uid = localStorage.getItem("uid");
     const fetchUserData = async () => {
-      try {
-        console.log(uid);
-        const userdetails = await GetUser(uid);
-        setcart(userdetails.cart);
-      } catch (error) {
-        toast.error("Error fetching user data", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+      if (localStorage.getItem("authenticated" === true)) {
+        try {
+          console.log(uid);
+          const userdetails = await GetUser(uid);
+          setcart(userdetails.cart);
+        } catch (error) {
+          toast.error("Error fetching user data", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       }
     };
     fetchUserData();
-  }, [cart]);
+  }, [cart,setcart]);
 
   return (
     <div className="cart">
