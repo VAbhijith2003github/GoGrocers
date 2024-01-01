@@ -812,10 +812,16 @@ textarea::-webkit-scrollbar-track {
     align-items: center;
   }
 }
-@media screen and (max-width: 375px) {
-  .address {
-    margin-top: 100px;
-  }
+#addresscard p {
+  margin: 0px;
+}
+#addresscard {
+  margin: 20px;
+  display: block !important;
+  cursor: default;
+}
+#addresscardsec {
+  margin-bottom: 90px;
 }
 /* _______________________________________________________..-contact us-..___________________________________________________*/
 #comingsoon {

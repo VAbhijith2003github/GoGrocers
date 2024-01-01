@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles.css";
 import NavBar from "../elements/navbar.jsx";
-import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UpdateAddress from "../firestore.operation.files/updateaddress.js";
+import GetUser from "../firestore.operation.files/getuser.js";
+import deleteicon from "../../images/accmedia/delete.png";
 
 function Addresses() {
-  const navigate = useNavigate();
+  const [addresses, setAddresses] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     phonenumber: "",
@@ -68,7 +69,8 @@ function Addresses() {
     const uid = localStorage.getItem("uid");
     const address = formData;
     try {
-      UpdateAddress(uid, address);
+      await UpdateAddress(uid, address);
+      setAddresses((prevAddresses) => [...prevAddresses, address]);
       toast.success("Address added successfully", {
         position: "top-right",
         autoClose: 5000,
@@ -79,10 +81,6 @@ function Addresses() {
         progress: undefined,
         theme: "colored",
       });
-
-      setTimeout(() => {
-        navigate("/profile");
-      }, 3000);
     } catch (error) {
       console.error("Error adding address:", error);
       toast.error("Error adding address", {
@@ -98,11 +96,55 @@ function Addresses() {
     }
   };
 
+  useEffect(() => {
+    const uid = localStorage.getItem("uid");
+    async function fetchAddress() {
+      const user = await GetUser(uid);
+      setAddresses(user.address);
+    }
+    fetchAddress(uid);
+  }, [addresses]);
+
+  const removeAddress = (indexToRemove) => {
+    const updatedAddresses = addresses.filter(
+      (address, index) => index !== indexToRemove
+    );
+    setAddresses(updatedAddresses);
+
+    // Add logic to remove the address from your data source (Firestore, etc.) if needed
+    // Example: Call a function like RemoveAddressFromFirestore(address.id) or similar
+  };
+
   return (
     <>
       <NavBar />
       <div className="bannersec" id="dashboardsec">
         <section className="dashboardcards" id="addresssec">
+          <div className="card-grid">
+            {
+              <>
+                {addresses &&
+                  addresses.map((address, index) => (
+                    <div key={index} className="dashboardcard" id="addresscard">
+                      <label htmlFor="pincode">PINCODE</label>
+                      <h4>{address.pincode}</h4>
+                      <br />
+                      <p>Phone Number : {address.phonenumber}</p>
+                      <p>
+                        {address.name}, {address.street}
+                      </p>
+                      <p>{address.landmark}</p>
+                      <p>
+                        {address.city}, {address.state}
+                      </p>
+                      <button onClick={() => removeAddress(index)} style={{border:"none",float:"right",backgroundColor:"white"}}>
+                        <img src={deleteicon} alt="delete" style={{height:"20px",backgroundColor:"white",opacity:"75%"}}/>
+                      </button>
+                    </div>
+                  ))}
+              </>
+            }
+          </div>
           <div className="address">
             <h4>Add Address</h4>
             <form onSubmit={handleSubmit}>
