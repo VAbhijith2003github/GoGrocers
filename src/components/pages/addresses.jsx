@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import UpdateAddress from "../firestore.operation.files/updateaddress.js";
 import GetUser from "../firestore.operation.files/getuser.js";
 import deleteicon from "../../images/accmedia/delete.png";
+import SetAddress from "../firestore.operation.files/setaddress.js";
 
 function Addresses() {
   const [addresses, setAddresses] = useState([]);
@@ -105,14 +106,23 @@ function Addresses() {
     fetchAddress(uid);
   }, [addresses]);
 
-  const removeAddress = (indexToRemove) => {
+  const removeAddress = async (indexToRemove) => {
     const updatedAddresses = addresses.filter(
       (address, index) => index !== indexToRemove
     );
+    const uid = localStorage.getItem("uid");
     setAddresses(updatedAddresses);
-
-    // Add logic to remove the address from your data source (Firestore, etc.) if needed
-    // Example: Call a function like RemoveAddressFromFirestore(address.id) or similar
+    await SetAddress(uid, updatedAddresses);
+    toast.success("Address removed successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (
@@ -137,8 +147,23 @@ function Addresses() {
                       <p>
                         {address.city}, {address.state}
                       </p>
-                      <button onClick={() => removeAddress(index)} style={{border:"none",float:"right",backgroundColor:"white"}}>
-                        <img src={deleteicon} alt="delete" style={{height:"20px",backgroundColor:"white",opacity:"75%"}}/>
+                      <button
+                        onClick={() => removeAddress(index)}
+                        style={{
+                          border: "none",
+                          float: "right",
+                          backgroundColor: "white",
+                        }}
+                      >
+                        <img
+                          src={deleteicon}
+                          alt="delete"
+                          style={{
+                            height: "20px",
+                            backgroundColor: "white",
+                            opacity: "75%",
+                          }}
+                        />
                       </button>
                     </div>
                   ))}
