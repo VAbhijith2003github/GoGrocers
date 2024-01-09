@@ -6,10 +6,17 @@ import Select from "react-select";
 import GetUser from "../firestore.operation.files/getuser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import emptybasket from "../../images/accmedia/basketempty.png"
 
 const Cart = () => {
   const { setcart, cart } = useContext(MyContext);
+  const navigate = useNavigate();
   const { updatecart, updatecartdec } = useContext(MyContext);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [deliverycharge] = useState(50);
+  const [selectedCoupon, setselectedCoupon] = useState("");
+  const {discount, setDiscount} = useContext(MyContext);
   const options = [
     { value: "Delhi", label: "Delhi" },
     { value: "Mumbai", label: "Mumbai" },
@@ -34,10 +41,6 @@ const Cart = () => {
     },
   ];
 
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [deliverycharge] = useState(50);
-  const [selectedCoupon, setselectedCoupon] = useState("");
-  const [discount, setdiscount] = useState(0);
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.priceint * item.frequency,
@@ -74,7 +77,28 @@ const Cart = () => {
       }
     };
     fetchUserData();
-  }, [cart,setcart]);
+  }, [cart, setcart]);
+
+ function handleClick()
+  {
+    if(cart.length > 0)
+    {
+      navigate("/checkout");
+    }
+    else
+    {
+      toast.error("Cart is empty", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
 
   return (
     <div className="cart">
@@ -105,61 +129,79 @@ const Cart = () => {
             className="row"
             style={{ width: "70%", position: "relative", left: "1.25%" }}
           >
-            {cart.map((item, index) => (
-              <div
-                key={index}
-                className="col-lg-4 col-md-6 col-sm-12 colelement cardbg"
-              >
-                <div className="imgdiv" style={{ width: "120%" }}>
-                  <img className="cardimgproduct" src={item.src} alt="pic" />
-                </div>
-                <p className="cardtextproduct" style={{ width: "120%" }}>
-                  {item.name}
-                </p>
-                <div className="infodev" style={{ width: "120%" }}>
-                  <button
-                    className="cartbuttons"
-                    style={{ width: "3%" }}
-                    onClick={() => {
-                      updatecart({
-                        name: item.name,
-                      });
-                    }}
+            {cart.length > 0 && (
+              <>
+                {cart.map((item, index) => (
+                  <div
+                    key={index}
+                    className="col-lg-4 col-md-6 col-sm-12 colelement cardbg"
                   >
-                    +
-                  </button>
-                  <button
-                    className="cartbuttons"
-                    style={{ width: "3%" }}
-                    disabled
-                  >
-                    <span>{item.frequency}</span>
-                  </button>
-                  <button
-                    className="cartbuttons"
-                    style={{ width: "3%" }}
-                    onClick={() => {
-                      updatecartdec({
-                        name: item.name,
-                      });
-                    }}
-                  >
-                    -
-                  </button>
-                  <div style={{ minWidth: "100px" }}>
-                    <h4
-                      className="productprice"
-                      style={{ display: "block", width: "120%" }}
-                    >
-                      <span style={{ marginRight: "5%" }}>
-                        {" "}
-                        Rs {item.frequency * item.priceint}
-                      </span>
-                    </h4>
+                    <div className="imgdiv" style={{ width: "120%" }}>
+                      <img
+                        className="cardimgproduct"
+                        src={item.src}
+                        alt="pic"
+                      />
+                    </div>
+                    <p className="cardtextproduct" style={{ width: "120%" }}>
+                      {item.name}
+                    </p>
+                    <div className="infodev" style={{ width: "120%" }}>
+                      <button
+                        className="cartbuttons"
+                        style={{ width: "3%" }}
+                        onClick={() => {
+                          updatecart({
+                            name: item.name,
+                          });
+                        }}
+                      >
+                        +
+                      </button>
+                      <button
+                        className="cartbuttons"
+                        style={{ width: "3%" }}
+                        disabled
+                      >
+                        <span>{item.frequency}</span>
+                      </button>
+                      <button
+                        className="cartbuttons"
+                        style={{ width: "3%" }}
+                        onClick={() => {
+                          updatecartdec({
+                            name: item.name,
+                          });
+                        }}
+                      >
+                        -
+                      </button>
+                      <div style={{ minWidth: "100px" }}>
+                        <h4
+                          className="productprice"
+                          style={{ display: "block", width: "120%" }}
+                        >
+                          <span style={{ marginRight: "5%" }}>
+                            {" "}
+                            Rs {item.frequency * item.priceint}
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
                   </div>
+                ))}
+              </>
+            )}
+            {
+              cart.length === 0 && (
+                <>
+                <div className="cartwarning">
+                  <img src={emptybasket} alt="cart is empty" style={{height:"50px",margin:"10px"}}/>
+                <h4>Your GoGrocers Cart is Empty</h4>
                 </div>
-              </div>
-            ))}
+                </>
+              )
+            }
           </div>
         </section>
       </section>
@@ -189,7 +231,7 @@ const Cart = () => {
               console.log(
                 value === optionscoupon[0] ? 50 + totalPrice * 0.1 : discount
               );
-              setdiscount(
+              setDiscount(
                 value === optionscoupon[0]
                   ? 50 + Math.round(totalPrice * 0.1 * 100) / 100
                   : value === optionscoupon[1]
@@ -231,6 +273,12 @@ const Cart = () => {
             /-
           </span>
         </p>
+        <button
+          onClick={handleClick}
+          className="checkoutbutton"
+        >
+          proceed to checkout
+        </button>
       </div>
       <div
         style={{

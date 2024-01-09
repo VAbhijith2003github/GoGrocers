@@ -62,24 +62,40 @@ function SignUp() {
         console.log(user.email);
         signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-            const user = userCredential.user;
-            const token = user.getIdToken();
-            const userEmail = user.email;
-            const userName = user.displayName;
-            const userid = user.uid;
-            localStorage.setItem("token", token);
-            localStorage.setItem("authenticated", "true");
-            localStorage.setItem("name", userName);
-            localStorage.setItem("email", userEmail);
-            localStorage.setItem("uid", userid);
-            CreateUser(userid, userEmail, userName);
-            UpdateCartonLogin(userid, cart);
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
+            async function loginwithmail() {
+              const user = userCredential.user;
+              const token = user.getIdToken();
+              const userEmail = user.email;
+              const userName = user.displayName;
+              const userid = user.uid;
+              localStorage.setItem("token", token);
+              localStorage.setItem("authenticated", "true");
+              localStorage.setItem("uid", userid);
+              try {
+                await CreateUser(userid, userEmail, userName);
+                await UpdateCartonLogin(userid, cart);
+                navigate("/");
+              } catch (err) {
+                toast.error(err.message, {
+                  position: "top-right",
+                  autoClose: 10000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+              }
+            }
+            loginwithmail();
           })
           .catch((error) => {
-            const errorMessage = error.message;
+            let errorMessage = error.message;
+            console.log(errorMessage);
+            if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+              errorMessage = "invalid credentials";
+            }
             toast.error(errorMessage, {
               position: "top-right",
               autoClose: 10000,
@@ -111,22 +127,36 @@ function SignUp() {
     UpdateCart(uid, cart);
   }
 
-
   const Loginwithgoogle = async () => {
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        const user = userCredential.user;
-        const userName = user.displayName;
-        const userEmail = user.email;
-        const userid = user.uid;
-        const token = userCredential.idToken;
-        localStorage.setItem("token", token);
-        localStorage.setItem("authenticated", "true");
-        localStorage.setItem("name", userName);
-        localStorage.setItem("email", userEmail);
-        localStorage.setItem("uid", userid);
-        CreateUser(userid, userEmail, userName);
-        navigate("/");
+        async function login() {
+          const user = userCredential.user;
+          const userName = user.displayName;
+          const userEmail = user.email;
+          const userid = user.uid;
+          const token = userCredential.idToken;
+          localStorage.setItem("token", token);
+          localStorage.setItem("authenticated", "true");
+          localStorage.setItem("uid", userid);
+          try {
+            await CreateUser(userid, userEmail, userName);
+            await UpdateCartonLogin(userid, cart);
+          } catch (err) {
+            toast.error(err.message, {
+              position: "top-right",
+              autoClose: 10000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+          navigate("/");
+        }
+        login();
       })
       .catch((error) => {
         const errorMessage = error.message;

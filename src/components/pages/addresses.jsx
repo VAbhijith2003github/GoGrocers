@@ -100,7 +100,7 @@ function Addresses() {
   useEffect(() => {
     const uid = localStorage.getItem("uid");
     async function fetchAddress() {
-      const user = await GetUser(uid);
+      const user = await GetUser(uid); 
       setAddresses(user.address);
     }
     fetchAddress(uid);
@@ -278,6 +278,36 @@ function Addresses() {
           pauseOnHover
           theme="colored"
         />
+      </div>
+      <div
+        style={{
+          backgroundColor: "rgba(180, 180, 180, 0.300)",
+          paddingBottom: "30px",
+        }}
+      >
+        <div className="row footerrow">
+          <i className="fa-brands fa-twitter ficon"></i>
+          <i className="fa-brands fa-facebook-f ficon"></i>
+          <i className="fa-brands fa-instagram ficon"></i>
+          <i className="fa-solid fa-envelope ficon"></i>
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            position: "relative",
+            right: "15px",
+            paddingLeft: "50px",
+            paddingRight: "50px",
+          }}
+        >
+          © Copyright 2023 GoGrocers || Created by{" "}
+          <a
+            href="https://github.com/VAbhijith2003github?tab=repositories"
+            style={{ color: "palevioletred" }}
+          >
+            Abhijith
+          </a>
+        </p>
       </div>
     </>
   );

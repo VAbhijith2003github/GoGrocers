@@ -20,11 +20,13 @@ import ComingSoon from "./components/pages/comingsoon";
 import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editprofile";
 import UpdateCart from "./components/firestore.operation.files/updatecart";
+import Checkout from "./components/pages/checkout";
 
 export const MyContext = createContext();
 
 const App = () => {
   const [cart, setcart] = useState([]);
+  const [discount, setDiscount] = useState(0);
   const uid = localStorage.getItem("uid");
 
   const updatecart = async (item) => {
@@ -65,7 +67,16 @@ const App = () => {
 
   return (
     <div>
-      <MyContext.Provider value={{ cart, setcart, updatecart, updatecartdec }}>
+      <MyContext.Provider
+        value={{
+          cart,
+          setcart,
+          updatecart,
+          updatecartdec,
+          discount,
+          setDiscount,
+        }}
+      >
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -86,6 +97,7 @@ const App = () => {
                 <Route path="/profile/rewards" element={<ComingSoon />} />
                 <Route path="/profile/yourorders" element={<ComingSoon />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/profile/edit" element={<EditProfile />} />
               </>
             )}
@@ -97,6 +109,7 @@ const App = () => {
                 <Route path="/profile/rewards" element={<Loginprompt />} />
                 <Route path="/profile/rewards" element={<Loginprompt />} />
                 <Route path="/profile" element={<Loginprompt />} />
+                <Route path="/checkout" element={<Loginprompt />} />
                 <Route path="/profile/edit" element={<Loginprompt />} />
               </>
             )}
