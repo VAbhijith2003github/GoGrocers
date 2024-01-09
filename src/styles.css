@@ -467,6 +467,11 @@ h5 {
     width: 200px;
     font-size: small;
   }
+  #list
+  {
+    font-size: 10px;
+    margin: 20px auto;
+  }
 }
 .headinglogin {
   margin-top: 20px;
@@ -702,7 +707,7 @@ h5 {
 @media screen and (max-width: 380px) {
   #addresscard {
     scale: 0.8;
-    min-height: 100vh;
+    min-height: 50vh;
   }
   .cartwarning
   {
@@ -729,6 +734,16 @@ h5 {
 @media screen and (max-width: 320px) {
   .dashboardcard {
     right: 45px;
+  }
+  #setaddress
+  {
+    position: relative;
+    right: 30px;
+  }
+  #ordersummarytable
+  {
+    position: relative;
+    right: 30px;
   }
 }
 /* _______________________________________________________..-contactus-..___________________________________________________*/
@@ -777,7 +792,7 @@ textarea::-webkit-scrollbar-track {
   }
   .dashboardcard
   {
-    height: 100px !important;
+    /* height: 100px !important; */
   }
 }
 /* _______________________________________________________..-addresses-..___________________________________________________*/
@@ -948,10 +963,31 @@ textarea::-webkit-scrollbar-track {
 }
 .ordersummary
 {
-  display: flex;
   margin-left: 20px;
 }
 #ordersummarydiv
 {
   width: 20%;
+}
+.tablecheckout td
+{
+  width: 30%;
+  padding: 5px 10px;
+}
+.tablecheckout #index
+{
+  width:30px;
+}
+.tablecheckout th
+{
+  width: 30%;
+  padding: 5px 10px;
+}
+.tablecheckout #index
+{
+  width:30px;
+}
+#ordersummarytable
+{
+  margin-bottom: 40px;
 }

@@ -91,7 +91,7 @@ function Checkout() {
       <div>
         <div className="checkoutsec">
           <section className="dashboardcards" id="checkoutsec">
-            <h2 className="checkoutheadings">
+            <h2 className="checkoutheadings" id="setaddress">
               SET&nbsp;&nbsp;DELIVERY&nbsp;ADDRESS
             </h2>
             <div className="card-grid">
@@ -130,32 +130,26 @@ function Checkout() {
             <hr />
             <h2 className="checkoutheadings">CHECKOUT&nbsp;&nbsp;DETAILS</h2>
             <div>
-              <div className="detailscard">
-                <div id="indexcard">S.No</div>
-                <div>name</div>
-                <div>Quantity</div>
-                <div>Price</div>
-              </div>
-              <hr
-                style={{
-                  margin: "3px 0px 0px 20px",
-                  height: "0.8px",
-                  backgroundColor: "grey",
-                  width: "93%",
-                }}
-              />
-              {cart.map((item, index) => (
-                <>
-                  <div className="detailscard">
-                    <div id="indexcard">{index + 1}</div>
-                    <div>{item.name}</div>
-                    <div>
-                      {item.frequency} units each {item.weight}
-                    </div>
-                    <div>₹ {item.priceint * item.frequency} /-</div>
-                  </div>
-                </>
-              ))}
+              <table className="tablecheckout" id="list">
+                <tr>
+                  <th id="index">S.No</th>
+                  <th>name</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+                {cart.map((item, index) => (
+                  <>
+                    <tr>
+                      <td id="index">{index + 1}</td>
+                      <td>{item.name}</td>
+                      <td>
+                        {item.frequency} units each {item.weight}
+                      </td>
+                      <td>₹&nbsp;{item.priceint * item.frequency}&nbsp;/-</td>
+                    </tr>
+                  </>
+                ))}
+              </table>
             </div>
             <hr />
             <h2
@@ -166,7 +160,24 @@ function Checkout() {
             </h2>
             <hr />
             <div className="ordersummary">
-              <div id="ordersummarydiv">
+              <table className="tablecheckout" id="ordersummarytable">
+                <tr>
+                  <td>Order&nbsp;total&nbsp;:</td>
+                  <td>₹&nbsp;{totalPrice}</td>
+                </tr>
+                <tr>
+                  <td>Delivery&nbsp;charge&nbsp;:</td>
+                  <td>₹&nbsp;50</td>                 
+                </tr>
+                <tr>
+                  <td>Discount&nbsp;:</td>
+                  <td>₹&nbsp;{discount}</td>
+                </tr>
+                <tr>
+                  <td>Bill&nbsp;Total&nbsp;:</td>
+                  <td>₹&nbsp;{totalPrice - discount + 50}</td>
+                </tr>
+                {/* <div id="ordersummarydiv">
                 <p>Order&nbsp;total&nbsp;:</p>
                 <p>Delivery&nbsp;charge&nbsp;:</p>
                 <p>Discount&nbsp;:</p>
@@ -181,7 +192,8 @@ function Checkout() {
                 <p style={{ fontWeight: "600" }}>
                   ₹ {totalPrice - discount + 50}
                 </p>
-              </div>
+              </div> */}
+              </table>
             </div>
             <button className="checkoutbutton" onClick={AddOrder}>
               Proceed to payment
