@@ -17,7 +17,8 @@ async function AddUserOrder(userid, order) {
     const existingData = userDocSnapshot.exists() ? userDocSnapshot.data() : {};
     await setDoc(userDocRef, {
       ...existingData,
-      orders: [...(existingData.orders || []), order],
+      onorder: [...(existingData.orders || []), order],
+      completed:[]
     });
     console.log("Order added successfully.");
     await ResetCart(userid);

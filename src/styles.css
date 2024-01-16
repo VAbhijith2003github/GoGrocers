@@ -170,7 +170,6 @@ h5 {
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center;
 }
 .banner {
   width: 100%;
@@ -351,9 +350,11 @@ h5 {
   overflow-x: hidden;
 }
 .cardsproduct {
-  background-color: rgba(163, 255, 110, 0.253);
+  background-color: rgba(145, 240, 90, 0.253);
   padding-bottom: 50px;
   min-height: 750px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 .cardtextproduct {
   color: black;
@@ -361,8 +362,9 @@ h5 {
   font-weight: 600;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: rgb(235, 255, 226);
+  background-color: rgb(236, 242, 238);
   font-size: small;
+  outline: 0.5px solid rgb(226, 226, 226);
 }
 .cardbg {
   height: 250px;
@@ -384,6 +386,7 @@ h5 {
   height: 100px;
   border-radius: 5%;
   background-color: white;
+  outline : 0.5px solid rgb(220, 220, 220);
 }
 .productaddtocart {
   background-color: rgb(241, 255, 244);
@@ -415,6 +418,7 @@ h5 {
   border-radius: 5%;
   position: relative;
   bottom: 10px;
+  outline: 0.5px solid rgb(212, 212, 212);
 }
 .productprice {
   padding: 15px 0px 0px 15px;
@@ -467,8 +471,7 @@ h5 {
     width: 200px;
     font-size: small;
   }
-  #list
-  {
+  #list {
     font-size: 10px;
     margin: 20px auto;
   }
@@ -561,8 +564,7 @@ h5 {
   .sidepanel p {
     padding-left: 20px;
   }
-  .checkoutbutton
-  {
+  .checkoutbutton {
     margin-left: 20px;
   }
 }
@@ -617,9 +619,8 @@ h5 {
 .cartbuttons:focus {
   outline: none;
 }
-.checkoutbutton
-{
-  width:200px;
+.checkoutbutton {
+  width: 200px;
   border: none;
   padding: 10px 10px;
   margin-bottom: 30px;
@@ -629,8 +630,7 @@ h5 {
   color: white;
   border: none;
 }
-.cartwarning
-{
+.cartwarning {
   margin: 30px 0px 0px 60px;
   color: rgb(78, 91, 109);
   font-weight: 600;
@@ -642,7 +642,7 @@ h5 {
   width: 100%;
   padding: 20px 0px;
 }
-.cartwarning img{
+.cartwarning img {
   height: 60px;
   margin: 0px 30px 0px 0px;
   float: left;
@@ -709,18 +709,15 @@ h5 {
     scale: 0.8;
     min-height: 50vh;
   }
-  .cartwarning
-  {
+  .cartwarning {
     flex-direction: column;
     scale: 0.8;
     width: 280px !important;
   }
-  .cartwarning img
-  {
+  .cartwarning img {
     margin: 20px 0px 40px 0px !important;
   }
-  .cartwarning h4
-  {
+  .cartwarning h4 {
     text-align: left;
     padding-left: 20px;
   }
@@ -735,13 +732,11 @@ h5 {
   .dashboardcard {
     right: 45px;
   }
-  #setaddress
-  {
+  #setaddress {
     position: relative;
     right: 30px;
   }
-  #ordersummarytable
-  {
+  #ordersummarytable {
     position: relative;
     right: 30px;
   }
@@ -790,8 +785,7 @@ textarea::-webkit-scrollbar-track {
     display: flex !important;
     justify-content: center !important;
   }
-  .dashboardcard
-  {
+  .dashboardcard {
     /* height: 100px !important; */
   }
 }
@@ -868,8 +862,7 @@ textarea::-webkit-scrollbar-track {
     margin: 10px auto;
     scale: 0.8;
   }
-  .cartwarning h4
-  {
+  .cartwarning h4 {
     font-size: 16px;
     margin: 0px auto;
   }
@@ -906,9 +899,8 @@ textarea::-webkit-scrollbar-track {
   width: 60%; /* Initial size */
   transition: width 3s ease; /* Transition property: width, duration: 3s, easing function: ease */
 }
-/* _______________________________________________________..-checkkout-..___________________________________________________*/
-.checkoutsec
-{
+/* _______________________________________________________..-checkout-..___________________________________________________*/
+.checkoutsec {
   min-height: 70vh;
   height: 100% !important;
   background-image: url("./images/bg.png");
@@ -917,77 +909,129 @@ textarea::-webkit-scrollbar-track {
   background-position: center;
   background-repeat: no-repeat;
 }
-#checkoutsec
-{
+#checkoutsec {
   min-height: 70vh;
   height: 100% !important;
 }
-.checkoutheadings
-{
+.checkoutheadings {
   margin: 5px 0px 5px 15px;
   color: rgb(96, 96, 96);
   font-size: 18px;
   margin: 20px 0px 10px 25px;
 }
-.radiobuttoncheckout
-{
+.radiobuttoncheckout {
   float: right;
   border-radius: 10px;
   height: 15px;
   width: 15px;
   border: 0.5px solid rgb(75, 75, 75);
 }
-.selected
-{
+.selected {
   outline: none !important;
   border: 0.5px solid rgb(122, 122, 122) !important;
   background-color: #40c04b8b;
 }
-.detailscard
-{
+.detailscard {
   display: flex;
   /* justify-content: center; */
   align-items: center;
   margin-left: 20px;
 }
-#indexcard
-{
+#indexcard {
   width: 30px;
 }
-.detailscard div
-{
+.detailscard div {
   width: 30%;
   min-width: 70px;
   border: 0.5px solid rgb(101, 101, 101);
   padding: 3px 0px 3px 5px;
 }
-.ordersummary
-{
+.ordersummary {
   margin-left: 20px;
 }
-#ordersummarydiv
-{
+#ordersummarydiv {
   width: 20%;
 }
-.tablecheckout td
-{
+.tablecheckout td {
   width: 30%;
   padding: 5px 10px;
 }
-.tablecheckout #index
-{
-  width:30px;
+.tablecheckout #index {
+  width: 30px;
 }
-.tablecheckout th
-{
+.tablecheckout th {
   width: 30%;
   padding: 5px 10px;
 }
-.tablecheckout #index
-{
-  width:30px;
+.tablecheckout #index {
+  width: 30px;
 }
-#ordersummarytable
-{
+#ordersummarytable {
   margin-bottom: 40px;
+}
+/* _______________________________________________________..-checkout-..___________________________________________________*/
+.order {
+  width: 650px;
+  height: 250px;
+  background-color: rgb(245, 255, 246);
+  border-radius: 10px;
+  margin: 20px 30px 20px 30px;
+  padding: 10px;
+  outline: 0.5px solid rgb(155, 155, 155);
+}
+.orderid {
+  float: right;
+  font-size: 15px;
+  margin: 10px 10px;
+}
+/* _______________________________________________________..-orders-..___________________________________________________*/
+.imageorderdiv {
+  display: flex;
+  align-items: center;
+  width: 600px;
+  overflow-x: auto;
+  margin: 10px 10px 30px 10px;
+  background-color: rgb(255, 255, 255);
+  padding-bottom: 15px;
+}
+.imageorderdiv::-webkit-scrollbar {
+  height: 5px;
+}
+
+.imageorderdiv::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+}
+
+.imageorderdiv::-webkit-scrollbar-thumb {
+  height: 5px;
+  background-color: #d2d2d2;
+}
+
+.imageorderdiv::-webkit-scrollbar-thumb:hover {
+  background-color: #b2b2b2;
+}
+
+.imageorderdiv::-webkit-scrollbar:vertical {
+  display: none;
+}
+.imageorder {
+  height: 80px;
+}
+.ordertime {
+}
+.orderdetailbtn {
+}
+.ordertextdiv {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 250px;
+}
+.orderindicator {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(237, 237, 237);
 }

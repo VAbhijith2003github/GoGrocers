@@ -21,6 +21,7 @@ import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editprofile";
 import UpdateCart from "./components/firestore.operation.files/updatecart";
 import Checkout from "./components/pages/checkout";
+import Orders from "./components/pages/orders";
 
 export const MyContext = createContext();
 
@@ -95,7 +96,7 @@ const App = () => {
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/profile/addresses" element={<Addresses />} />
                 <Route path="/profile/rewards" element={<ComingSoon />} />
-                <Route path="/profile/yourorders" element={<ComingSoon />} />
+                <Route path="/profile/yourorders" element={<Orders/>} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/profile/edit" element={<EditProfile />} />

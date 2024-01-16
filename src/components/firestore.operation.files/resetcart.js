@@ -10,7 +10,7 @@ import {
   async function ResetCart(uid) {
     try {
       const db = getFirestore(app);
-      const usersCollection = collection(db, "users");
+      const usersCollection = collection(db, "carts");
       const userDocRef = doc(usersCollection, uid);
       const userDocSnapshot = await getDoc(userDocRef);
   

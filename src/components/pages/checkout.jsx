@@ -5,6 +5,8 @@ import { MyContext } from "../../App";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddUserOrder from "../firestore.operation.files/adduserorder";
+import GetCart from "../firestore.operation.files/getcart";
+import { nanoid } from 'nanoid'
 
 function Checkout() {
   const [cart, setCart] = useState([]);
@@ -21,10 +23,11 @@ function Checkout() {
     async function FetchDetails() {
       try {
         const user = await GetUser(uid);
+        const usercart = await GetCart(uid);
         console.log(user.address);
         setAddresses(user.address);
-        setCart(user.cart);
-        const totalPrice = user.cart.reduce((sum, item) => {
+        setCart(usercart.cart);
+        const totalPrice = usercart.cart.reduce((sum, item) => {
           return sum + item.priceint * item.frequency;
         }, 0);
         setTotalPrice(totalPrice);
@@ -47,11 +50,13 @@ function Checkout() {
   async function AddOrder() {
     const uid = localStorage.getItem("uid");
     const currentDate = new Date();
+    const orderid = nanoid(10);
     const order = {
       deliveryaddress: selectedAddress,
       orderdetail: cart,
       orderbillamount: totalPrice,
       ordertime: currentDate,
+      id : orderid
     };
     try {
       await AddUserOrder(uid, order);
@@ -177,22 +182,6 @@ function Checkout() {
                   <td>Bill&nbsp;Total&nbsp;:</td>
                   <td>₹&nbsp;{totalPrice - discount + 50}</td>
                 </tr>
-                {/* <div id="ordersummarydiv">
-                <p>Order&nbsp;total&nbsp;:</p>
-                <p>Delivery&nbsp;charge&nbsp;:</p>
-                <p>Discount&nbsp;:</p>
-                <hr />
-                <p style={{ fontWeight: "600" }}>Bill&nbsp;Total&nbsp;:</p>
-              </div>
-              <div id="ordersummarydiv">
-                <p>₹ {totalPrice}</p>
-                <p>₹ 50</p>
-                <p>₹ {discount}</p>
-                <hr />
-                <p style={{ fontWeight: "600" }}>
-                  ₹ {totalPrice - discount + 50}
-                </p>
-              </div> */}
               </table>
             </div>
             <button className="checkoutbutton" onClick={AddOrder}>
