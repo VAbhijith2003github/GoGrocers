@@ -19,7 +19,6 @@ GoGrocers is a dynamic e-commerce website dedicated to groceries, built using Re
   <li>Edit user name and phone number</li>
       </ul>
   </li>
-  <li></li>
   <li>React context utilized for implementation of a dynamic cart variable.</li>
   <li>React router based routing with authenticated check before navigating that prompts login</li>
   <li>UseEffect based data fetching of user data on page loading</li>
