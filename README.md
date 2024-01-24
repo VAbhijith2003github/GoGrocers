@@ -5,27 +5,36 @@
 ![image](https://github.com/VAbhijith2003github/gogrocers/assets/119759593/f2e3a903-a421-4bf1-8b23-1fea58ca107b)
 
 ## Description
-GoGrocers is a react based frontend application working as a e-commmerce website model dealing in groceries. The overall design and structuring was made after studying multiple grocery delivery websites. 
-The implementation of react is in following ways as below 
+GoGrocers is a dynamic e-commerce website dedicated to groceries, built using React.js for the frontend and Firestore database for real-time data updates. The website's design and structure draw inspiration from extensive research on various grocery delivery platforms.
 <ul>
-  <li>React components for each webpage with elements rendering individually if needed .</li>
-  <li>React states used in created necessary variables for having dynamic components without reloading .</li>
-  <li>React context variable for implementation of a dynamic variable that have scope in each jsx components needed : cart variable is implemented with react context .</li>
-  <li>React router for having to route each jsx based page to its corresponding links .</li>
-  <li>React Useffect to implement dynamically change the banner icon on resizing .</li>
-  <li>React link instead of href components to load components without refreshing .</li>
-  <li>React select to implement a city selector in the website .</li>
+  <li>Responsive design with optimum visibility for each elements</li>
+  <li>Authentication feature utilizing firebase in withgoogle method and withemailandpassword method</li>
+  <li>User data including cart, profile details synced with login account using realtime updates in firestore</li>
+  <li>Database security feature implemented using firestore rules that restrict user reading/updating other user documents</li>
+  <li>User profile section that allows to:
+    <ul>
+  <li>Tracks order status</li>
+  <li>submit queries that on submission is visible to admin with time of submission, query and user details for contact</li>
+  <li>add and remove delivery addresses</li>
+  <li>Edit user name and phone number</li>
+      </ul>
+  </li>
+  <li></li>
+  <li>React context utilized for implementation of a dynamic cart variable.</li>
+  <li>React router based routing with authenticated check before navigating that prompts login</li>
+  <li>UseEffect based data fetching of user data on page loading</li>
+  <li>Checkout page with checkout product details with discounts and price details</li>
+  <li>Address selector in checkout page</li>
 </ul>
 
 ## Further progress
 The project is in progress further version updates will be coming soon
 planned updates.
 <ul>
-<li>Implement the feature mentioned in the issue section .</li>
-<li>Further develop the backend in MERN stack .</li>
-<li>Implement the Google authentication which is currently in dummy state .</li>
+<li>Convert the product database which is currently in json file to SQL based database</li>
+<li>Implement email campaign for discount alerts</li>
+<li>create an admin page with interactable UI that gives data insights on stock, orders ... et cetera</li>
 </ul>
-# Quote generator App
 
 ## Contact
 Open to reviews and suggestions from fellow developers 
