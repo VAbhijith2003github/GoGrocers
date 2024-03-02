@@ -705,10 +705,6 @@ h5 {
   margin-right: 10px;
 }
 @media screen and (max-width: 380px) {
-  #addresscard {
-    scale: 0.8;
-    min-height: 50vh;
-  }
   .cartwarning {
     flex-direction: column;
     scale: 0.8;
@@ -872,11 +868,13 @@ textarea::-webkit-scrollbar-track {
     min-width: 280px !important;
     scale: 0.8;
     margin: 0px;
+    justify-self: center;
   }
-  #addresssec {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+@media screen and (max-width: 320px) {
+  #addresscard
+  {
+    width: 250px !important;
   }
 }
 #addresscard p {
@@ -1039,7 +1037,24 @@ textarea::-webkit-scrollbar-track {
   background-color: rgb(237, 237, 237);
 }
 /* _______________________________________________________..-order page-..___________________________________________________*/
-.orderpagesection
+.orderdetailtab
 {
-
+  
+}
+@media screen and (max-width: 500px){
+  .orderdetailtab td{
+    font-size: 13px;
+  }
+  .orderdetailtab td{
+    margin-left: 20px;
+  }
+}
+@media screen and (max-width: 420px){
+  .checkoutheadings
+  {
+    font-size: 15px;
+    margin: 5px auto;
+    position: relative;
+    right: 5px;
+  }
 }

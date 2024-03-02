@@ -55,12 +55,12 @@ function Order() {
       <div>
         <div className="checkoutsec">
           <section className="dashboardcards" id="checkoutsec">
-            <h1 className="checkoutheadings" style={{ fontSize: "20px" }}>
+            <h1 className="checkoutheadings">
               VIEW&nbsp;ORDER&nbsp;&nbsp;INFORMATION
             </h1>
             <hr />
             <table className="tablecheckout" id="ordersummarytable">
-              <tbody>
+              <tbody className="orderdetailtab">
                 <tr>
                   <td>Order date / time:</td>
                   <td>{formatOrderTime(order.ordertime)}</td>
@@ -76,7 +76,7 @@ function Order() {
               </tbody>
             </table>
             <hr />
-            <h2 className="checkoutheadings" style={{ fontSize: "20px" }}>
+            <h2 className="checkoutheadings">
               ORDERS&nbsp;&nbsp;DETAILS
             </h2>
             <hr />

@@ -104,7 +104,7 @@ function Addresses() {
       setAddresses(user.address);
     }
     fetchAddress(uid);
-  }, [addresses]);
+  }, []);
 
   const removeAddress = async (indexToRemove) => {
     const updatedAddresses = addresses.filter(

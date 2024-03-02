@@ -12,7 +12,7 @@ const Navbarcomp = () => {
 
   useEffect(() => {
   onLoad();
-  }, []);
+  }, [authenticated]);
 
   async function onLoad() {
     // console.log(authenticated);

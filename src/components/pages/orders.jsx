@@ -4,11 +4,9 @@ import NavBar from "../elements/navbar";
 import { toast, ToastContainer } from "react-toastify";
 import GetOrder from "../firestore.operation.files/getorder";
 import arrow from "../../images/accmedia/arrow.png";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Orders() {
-  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     async function getorderdata() {
