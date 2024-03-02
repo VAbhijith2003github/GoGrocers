@@ -1,6 +1,9 @@
 /* _______________________________________________________..-Body-..___________________________________________________*/
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
 }
 
 body {
@@ -8,17 +11,13 @@ body {
   padding: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none;
   font-family: "Montserrat", sans-serif;
 }
 
-body::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 0px;
 }
-
-body::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 h5 {

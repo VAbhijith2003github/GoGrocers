@@ -13,7 +13,7 @@ function Checkout() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [addresses, setAddresses] = useState([]);
   const { discount } = useContext(MyContext);
-  const [selectedAddress, setSelectedAddress] = useState({});
+  const [selectedAddress, setSelectedAddress] = useState("");
   const handleSelectAddress = (address) => {
     setSelectedAddress(address);
   };
@@ -60,7 +60,9 @@ function Checkout() {
       totalPrice: totalPrice,
       discount: discount,
     };
-    if (selectedAddress !== null) {
+    const isAddressSelected = selectedAddress !== "";
+
+    if (isAddressSelected) {
       try {
         await AddUserOrder(uid, order);
         toast.success("Order placed succesfully", {
@@ -80,7 +82,7 @@ function Checkout() {
           redirectToNewRoute();
         }, 3000);
       } catch (err) {
-        toast.error("Error adding error", {
+        toast.error("error placing order", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -91,8 +93,7 @@ function Checkout() {
           theme: "light",
         });
       }
-    }
-    else{
+    } else {
       toast.warning("Select an address", {
         position: "top-right",
         autoClose: 5000,
@@ -195,8 +196,10 @@ function Checkout() {
                   <td>₹&nbsp;{discount}</td>
                 </tr>
                 <tr>
-                  <td style={{fontWeight:600}}>Bill&nbsp;Total&nbsp;:</td>
-                  <td style={{fontWeight:600}}>₹&nbsp;{totalPrice - discount + 50}</td>
+                  <td style={{ fontWeight: 600 }}>Bill&nbsp;Total&nbsp;:</td>
+                  <td style={{ fontWeight: 600 }}>
+                    ₹&nbsp;{totalPrice - discount + 50}
+                  </td>
                 </tr>
               </table>
             </div>
