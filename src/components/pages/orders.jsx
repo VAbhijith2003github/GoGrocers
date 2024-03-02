@@ -59,7 +59,7 @@ function Orders() {
         <span>Past Orders</span>
       </div>
       <div className="bannersec" id="dashboardsec">
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%" }} className="ordersdiv">
           {orders.map((order, index) => (
             <>
               <div className="order">
@@ -83,10 +83,11 @@ function Orders() {
                   </p>
                   <p className="orderdetailbtn">
                     order details
-                    <Link to={`/profile/yourorders/${order.id}`}>
+                    <Link to={`/profile/yourorders/${order.id}`} >
                       <img
                         src={arrow}
                         alt="arrow"
+                        className="orderlink"
                         style={{
                           height: "15px",
                           width: "15px",
@@ -96,6 +97,7 @@ function Orders() {
                       />
                       <img
                         src={arrow}
+                        className="orderlink"
                         alt="arrow"
                         style={{
                           height: "15px",

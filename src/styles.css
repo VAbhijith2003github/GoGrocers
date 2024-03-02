@@ -205,7 +205,7 @@ h5 {
     position: relative;
     right: 20px;
   }
-  .bannersec {
+  #bannerhome {
     position: relative;
     bottom: 100px;
   }
@@ -386,7 +386,7 @@ h5 {
   height: 100px;
   border-radius: 5%;
   background-color: white;
-  outline : 0.5px solid rgb(220, 220, 220);
+  outline: 0.5px solid rgb(220, 220, 220);
 }
 .productaddtocart {
   background-color: rgb(241, 255, 244);
@@ -872,8 +872,7 @@ textarea::-webkit-scrollbar-track {
   }
 }
 @media screen and (max-width: 320px) {
-  #addresscard
-  {
+  #addresscard {
     width: 250px !important;
   }
 }
@@ -998,7 +997,6 @@ textarea::-webkit-scrollbar-track {
 .imageorderdiv::-webkit-scrollbar {
   height: 5px;
 }
-
 .imageorderdiv::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
 }
@@ -1036,22 +1034,83 @@ textarea::-webkit-scrollbar-track {
   justify-content: space-around;
   background-color: rgb(237, 237, 237);
 }
-/* _______________________________________________________..-order page-..___________________________________________________*/
-.orderdetailtab
-{
-  
+@media screen and (max-width: 900px) {
+  .ordersdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .order {
+    width: 75vw;
+  }
+  .imageorderdiv {
+    width: 65vw;
+  }
+  .ordertextdiv {
+    gap: 25vw !important;
+  }
 }
-@media screen and (max-width: 500px){
-  .orderdetailtab td{
+@media screen and (max-width: 500px) {
+  .ordertextdiv {
+    gap: 15vw !important;
+  }
+  .imageorder {
+    height: 60px;
+  }
+  .imageorderdiv {
+    margin-top: 40px;
+  }
+  .ordertime {
     font-size: 13px;
   }
-  .orderdetailtab td{
+  .orderdetailbtn {
+    font-size: 13px;
+  }
+  .orderid {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .ordertextdiv {
+    gap: 10vw !important;
+  }
+  .imageorderdiv {
+    margin-top: 40px;
+  }
+  .imageorder {
+    height: 45px;
+  }
+  .ordertime {
+    font-size: 11px;
+  }
+  .orderdetailbtn {
+    font-size: 11px;
+    position: relative;
+    left:4px
+  }
+  .orderid {
+    font-size: 11px;
+  }
+  .orderlink
+  {
+    height: 8px !important;
+    width: 8px !important;
+    margin: 0px;
+  }
+}
+/* _______________________________________________________..-order page-..___________________________________________________*/
+.orderdetailtab {
+}
+@media screen and (max-width: 500px) {
+  .orderdetailtab td {
+    font-size: 13px;
+  }
+  .orderdetailtab td {
     margin-left: 20px;
   }
 }
-@media screen and (max-width: 420px){
-  .checkoutheadings
-  {
+@media screen and (max-width: 420px) {
+  .checkoutheadings {
     font-size: 15px;
     margin: 5px auto;
     position: relative;

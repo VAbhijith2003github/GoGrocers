@@ -33,7 +33,7 @@ function Banner() {
   }, []);
   return (
     <div className="bannerholder">
-      <section className="bannersec">
+      <section className="bannersec" id="bannerhome">
         <div className="banner" id="bannerdiv">
           <img
             className="veggiesbanner"
