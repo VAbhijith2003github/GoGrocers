@@ -15,11 +15,14 @@ async function AddUserOrder(userid, order) {
     const userDocRef = doc(ordersCollection, userid);
     const userDocSnapshot = await getDoc(userDocRef);
     const existingData = userDocSnapshot.exists() ? userDocSnapshot.data() : {};
+    const updatedOrders = [...(existingData.onorder || []), order];
+
     await setDoc(userDocRef, {
       ...existingData,
-      onorder: [...(existingData.orders || []), order],
-      completed:[]
+      onorder: updatedOrders,
+      completed: existingData.completed || [],
     });
+
     console.log("Order added successfully.");
     await ResetCart(userid);
   } catch (error) {

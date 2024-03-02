@@ -4,15 +4,32 @@ import NavBar from "../elements/navbar";
 import { toast, ToastContainer } from "react-toastify";
 import GetOrder from "../firestore.operation.files/getorder";
 import arrow from "../../images/accmedia/arrow.png";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Orders() {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     async function getorderdata() {
       const uid = localStorage.getItem("uid");
-      const orderdata = await GetOrder(uid);
-      setOrders(orderdata.onorder);
-      console.log(orderdata.orders[0].ordertime);
+      try {
+        const orderdata = await GetOrder(uid);
+        setOrders(orderdata.onorder);
+        console.log(orderdata.orders[0].ordertime);
+      } catch (err) {
+        // toast.error("Error fetching user data", {
+        //   position: "top-right",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        // });
+        console.log(err);
+      }
     }
     getorderdata();
   }, []);
@@ -35,7 +52,7 @@ function Orders() {
       return "Invalid Date";
     }
   };
-  
+
   return (
     <>
       <NavBar />
@@ -68,21 +85,27 @@ function Orders() {
                   </p>
                   <p className="orderdetailbtn">
                     order details
-                    <img
-                      src={arrow}
-                      alt="arrow"
-                      style={{
-                        height: "15px",
-                        width: "15px",
-                        opacity: "0.5",
-                        marginLeft: "10px",
-                      }}
-                    />
-                    <img
-                      src={arrow}
-                      alt="arrow"
-                      style={{ height: "15px", width: "15px", opacity: "0.5" }}
-                    />
+                    <Link to={`/profile/yourorders/${order.id}`}>
+                      <img
+                        src={arrow}
+                        alt="arrow"
+                        style={{
+                          height: "15px",
+                          width: "15px",
+                          opacity: "0.5",
+                          marginLeft: "10px",
+                        }}
+                      />
+                      <img
+                        src={arrow}
+                        alt="arrow"
+                        style={{
+                          height: "15px",
+                          width: "15px",
+                          opacity: "0.5",
+                        }}
+                      />
+                    </Link>
                   </p>
                 </div>
               </div>

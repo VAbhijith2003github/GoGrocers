@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddUserOrder from "../firestore.operation.files/adduserorder";
 import GetCart from "../firestore.operation.files/getcart";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 
 function Checkout() {
   const [cart, setCart] = useState([]);
@@ -56,28 +56,44 @@ function Checkout() {
       orderdetail: cart,
       orderbillamount: totalPrice,
       ordertime: currentDate,
-      id : orderid
+      id: orderid,
+      totalPrice: totalPrice,
+      discount: discount,
     };
-    try {
-      await AddUserOrder(uid, order);
-      toast.success("Order placed succesfully", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      const redirectToNewRoute = () => {
-        window.location.href = "/profile/yourorders";
-      };
-      setTimeout(() => {
-        redirectToNewRoute();
-      }, 3000);
-    } catch (err) {
-      toast.error("Error adding error", {
+    if (selectedAddress !== null) {
+      try {
+        await AddUserOrder(uid, order);
+        toast.success("Order placed succesfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        const redirectToNewRoute = () => {
+          window.location.href = "/";
+        };
+        setTimeout(() => {
+          redirectToNewRoute();
+        }, 3000);
+      } catch (err) {
+        toast.error("Error adding error", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
+    else{
+      toast.warning("Select an address", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -172,15 +188,15 @@ function Checkout() {
                 </tr>
                 <tr>
                   <td>Delivery&nbsp;charge&nbsp;:</td>
-                  <td>₹&nbsp;50</td>                 
+                  <td>₹&nbsp;50</td>
                 </tr>
                 <tr>
                   <td>Discount&nbsp;:</td>
                   <td>₹&nbsp;{discount}</td>
                 </tr>
                 <tr>
-                  <td>Bill&nbsp;Total&nbsp;:</td>
-                  <td>₹&nbsp;{totalPrice - discount + 50}</td>
+                  <td style={{fontWeight:600}}>Bill&nbsp;Total&nbsp;:</td>
+                  <td style={{fontWeight:600}}>₹&nbsp;{totalPrice - discount + 50}</td>
                 </tr>
               </table>
             </div>
