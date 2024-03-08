@@ -19,7 +19,6 @@ function Orders() {
       try {
         const orderdata = await GetOrder(uid);
         setOrders(orderdata.onorder);
-        console.log(orderdata.orders[0].ordertime);
       } catch (err) {
         toast.error("Error fetching user data", {
           position: "top-right",
