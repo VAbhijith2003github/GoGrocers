@@ -13,8 +13,8 @@ import {
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CreateUser from "../firestore.operation.files/createuser.js";
-import UpdateCart from "../firestore.operation.files/updatecart.js";
+import CreateUser from "../firestore.operations.files/createuser.js";
+import UpdateCart from "../firestore.operations.files/updatecart.js";
 import { MyContext } from "../../App";
 import { useContext } from "react";
 

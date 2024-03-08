@@ -3,7 +3,7 @@ import "../../styles.css";
 import Navbar from "../elements/navbar";
 import { MyContext } from "../../App";
 import Select from "react-select";
-import GetUser from "../firestore.operation.files/getuser";
+import GetUser from "../firestore.operations.files/getuser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";

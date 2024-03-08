@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../elements/navbar";
-import GetUser from "../firestore.operation.files/getuser";
+import GetUser from "../firestore.operations.files/getuser";
 import { MyContext } from "../../App";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AddUserOrder from "../firestore.operation.files/adduserorder";
-import GetCart from "../firestore.operation.files/getcart";
+import AddUserOrder from "../firestore.operations.files/adduserorder";
+import GetCart from "../firestore.operations.files/getcart";
 import { nanoid } from "nanoid";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
   const [cart, setCart] = useState([]);
@@ -17,7 +20,8 @@ function Checkout() {
   const handleSelectAddress = (address) => {
     setSelectedAddress(address);
   };
-
+  const navigate = useNavigate();
+  const auth = getAuth(app);
   useEffect(() => {
     const uid = localStorage.getItem("uid");
     async function FetchDetails() {
@@ -46,6 +50,25 @@ function Checkout() {
     }
     FetchDetails();
   }, []);
+
+  onAuthStateChanged(auth, (user) => {
+    if(user === null){
+      toast.error("Please login to continue", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  });
+
 
   async function AddOrder() {
     const uid = localStorage.getItem("uid");

@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GetUser from "../firestore.operation.files/getuser.js";
-import CreateQuery from "../firestore.operation.files/createquery.js";
+import GetUser from "../firestore.operations.files/getuser.js";
+import CreateQuery from "../firestore.operations.files/createquery.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
 
 function ContactUs() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-
+  const auth = getAuth(app);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userid = localStorage.getItem("uid");
@@ -32,6 +34,13 @@ function ContactUs() {
       navigate("/dashboard");
     }, 3000);
   };
+
+  onAuthStateChanged(auth, (user) => {
+    if(user === null){
+      navigate("/");
+    }
+  });
+
 
   return (
     <>

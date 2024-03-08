@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import "../../styles.css";
 import NavBar from "../elements/navbar";
 import { toast, ToastContainer } from "react-toastify";
-import GetOrder from "../firestore.operation.files/getorder";
+import GetOrder from "../firestore.operations.files/getorder";
 import arrow from "../../images/accmedia/arrow.png";
 import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
+import { useNavigate } from "react-router-dom";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
+  const auth = getAuth(app);
   useEffect(() => {
     async function getorderdata() {
       const uid = localStorage.getItem("uid");
@@ -16,21 +21,39 @@ function Orders() {
         setOrders(orderdata.onorder);
         console.log(orderdata.orders[0].ordertime);
       } catch (err) {
-        // toast.error("Error fetching user data", {
-        //   position: "top-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "light",
-        // });
+        toast.error("Error fetching user data", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         console.log(err);
       }
     }
     getorderdata();
   }, []);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user === null) {
+      toast.error("Please login to continue", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  });
 
   const formatOrderTime = (ordertime) => {
     if (ordertime instanceof Date) {
@@ -83,7 +106,7 @@ function Orders() {
                   </p>
                   <p className="orderdetailbtn">
                     order details
-                    <Link to={`/profile/yourorders/${order.id}`} >
+                    <Link to={`/profile/yourorders/${order.id}`}>
                       <img
                         src={arrow}
                         alt="arrow"

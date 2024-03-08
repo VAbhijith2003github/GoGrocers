@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles.css";
 import NavBar from "../elements/navbar.jsx";
-import UpdateUser from "../firestore.operation.files/updateuser.js";
+import UpdateUser from "../firestore.operations.files/updateuser.js";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

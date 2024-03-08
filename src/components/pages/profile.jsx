@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "../../styles.css";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../elements/navbar.jsx";
-import GetUser from "../firestore.operation.files/getuser.js";
+import GetUser from "../firestore.operations.files/getuser.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
 
 function Profile() {
   const uid = localStorage.getItem("uid");
   const navigate = useNavigate();
+  const auth = getAuth(app);
   const [user, setUser] = useState({
     name: "",
     phonenumber: "Not Set",
@@ -43,6 +46,24 @@ function Profile() {
 
     fetchUserData();
   }, [uid]);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user === null) {
+      toast.error("Please login to continue", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  });
 
   return (
     <>

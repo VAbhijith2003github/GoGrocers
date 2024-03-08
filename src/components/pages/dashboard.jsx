@@ -8,7 +8,7 @@ import img4 from "../../images/accmedia/006-user.png";
 import img5 from "../../images/accmedia/coupon.png";
 import logout from "../../images/accmedia/logout.png";
 import { app } from "../../firebase-config.js";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import "../../styles.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +23,11 @@ function DashBoard() {
     "profile",
     "profile/rewards",
   ];
+
+  onAuthStateChanged(auth, (user) => {
+    if (user === null) 
+    navigate("/login");
+  });
 
   function logoutfunc() {
     signOut(auth)

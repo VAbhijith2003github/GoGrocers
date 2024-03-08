@@ -19,7 +19,7 @@ import Loginprompt from "./components/pages/loginprompt";
 import ComingSoon from "./components/pages/comingsoon";
 import Profile from "./components/pages/profile";
 import EditProfile from "./components/pages/editprofile";
-import UpdateCart from "./components/firestore.operation.files/updatecart";
+import UpdateCart from "./components/firestore.operations.files/updatecart.js";
 import Checkout from "./components/pages/checkout";
 import Orders from "./components/pages/orders";
 import Order from "./components/pages/order";

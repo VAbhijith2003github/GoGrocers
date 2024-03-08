@@ -4,25 +4,37 @@ import login from "../../images/user.png";
 import cart from "../../images/cart.png";
 import search from "../../images/search.png";
 import { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
 
 const Navbarcomp = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [loginLink, setLoginLink] = useState("/login");
   const [name, setName] = useState("You");
+  const auth = getAuth(app);
 
   useEffect(() => {
-  onLoad();
-  }, [authenticated]);
+    onLoad();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthenticated(true);
+        setLoginLink("/dashboard");
+        setName(user.displayName);
+      } else {
+        setAuthenticated(false);
+        setLoginLink("/login");
+      }
+    });
+  }, [auth]);
 
   async function onLoad() {
-    // console.log(authenticated);
-    const token = localStorage.getItem("token");
     const name = localStorage.getItem("name");
     if (name && name !== "" && name !== "null") {
       const truncatedName = name.substring(0, 20);
       setName(truncatedName);
     }
-    if (localStorage.getItem("authenticated") === "true" && token) {
+    if (localStorage.getItem("authenticated") === "true") {
       setAuthenticated("true");
       setLoginLink("/dashboard");
     }

@@ -3,10 +3,13 @@ import "../../styles.css";
 import NavBar from "../elements/navbar.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UpdateAddress from "../firestore.operation.files/updateaddress.js";
-import GetUser from "../firestore.operation.files/getuser.js";
+import UpdateAddress from "../firestore.operations.files/updateaddress.js";
+import GetUser from "../firestore.operations.files/getuser.js";
 import deleteicon from "../../images/accmedia/delete.png";
-import SetAddress from "../firestore.operation.files/setaddress.js";
+import SetAddress from "../firestore.operations.files/setaddress.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase-config.js";
+import { useNavigate } from "react-router-dom";
 
 function Addresses() {
   const [addresses, setAddresses] = useState([]);
@@ -57,6 +60,8 @@ function Addresses() {
     "Puducherry",
   ];
 
+  const navigate = useNavigate();
+  const auth = getAuth(app);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -105,6 +110,12 @@ function Addresses() {
     }
     fetchAddress(uid);
   }, []);
+
+  onAuthStateChanged(auth, (user) => {
+    if(user === null){
+      navigate("/");
+    }
+  });
 
   const removeAddress = async (indexToRemove) => {
     const updatedAddresses = addresses.filter(
