@@ -5,19 +5,10 @@ import NavBar from "../elements/navbar.jsx";
 import GetUser from "../firestore.operation.files/getuser.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getAuth } from "firebase/auth";
-import { app } from "../../firebase-config.js";
 
 function Profile() {
   const uid = localStorage.getItem("uid");
-  const auth = getAuth(app);
   const navigate = useNavigate();
-
-  auth.onAuthStateChanged((user) => {
-    if (!user) {
-      navigate("/");
-    }
-  });
   const [user, setUser] = useState({
     name: "",
     phonenumber: "Not Set",

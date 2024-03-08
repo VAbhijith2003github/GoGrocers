@@ -23,10 +23,12 @@ import UpdateCart from "./components/firestore.operation.files/updatecart";
 import Checkout from "./components/pages/checkout";
 import Orders from "./components/pages/orders";
 import Order from "./components/pages/order";
-
+import { getAuth } from "firebase/auth";
+import { app } from "./firebase-config.js";
 export const MyContext = createContext();
 
 const App = () => {
+  const auth = getAuth(app);
   const [cart, setcart] = useState([]);
   const [discount, setDiscount] = useState(0);
   const uid = localStorage.getItem("uid");
@@ -77,6 +79,7 @@ const App = () => {
           updatecartdec,
           discount,
           setDiscount,
+          auth,
         }}
       >
         <Router>
@@ -97,8 +100,11 @@ const App = () => {
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/profile/addresses" element={<Addresses />} />
                 <Route path="/profile/rewards" element={<ComingSoon />} />
-                <Route path="/profile/yourorders" element={<Orders/>} />
-                <Route path="/profile/yourorders/:orderid" element={<Order/>} />
+                <Route path="/profile/yourorders" element={<Orders />} />
+                <Route
+                  path="/profile/yourorders/:orderid"
+                  element={<Order />}
+                />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/profile/edit" element={<EditProfile />} />
