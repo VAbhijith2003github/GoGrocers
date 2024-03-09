@@ -7,12 +7,16 @@ import { useParams } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase-config.js";
 import { useNavigate } from "react-router-dom";
+import MarkOrderAsComplete from "../firestore.operations.files/markorderascomplete.js";
+import { nanoid } from "nanoid";
+import AddUserOrder from "../firestore.operations.files/adduserorder";
 
 function Order() {
   const { orderid } = useParams();
   const [order, setOrder] = useState({ orderdetail: [] });
   const navigate = useNavigate();
   const auth = getAuth(app);
+  const [status, setStatus] = useState("arriving");
 
   async function Get_Order(orderid) {
     const uid = localStorage.getItem("uid");
@@ -21,6 +25,12 @@ function Order() {
       for (let i of orderdata.onorder) {
         if (i.id === orderid) {
           setOrder(i);
+        }
+      }
+      for (let i of orderdata.completed) {
+        if (i.id === orderid) {
+          setOrder(i);
+          setStatus("completed");
         }
       }
     } catch (err) {
@@ -37,6 +47,68 @@ function Order() {
     }
   }
 
+  const MarkDelivered = async () => {
+    console.log("clicked");
+    const uid = localStorage.getItem("uid");
+    try {
+      await MarkOrderAsComplete(uid, order);
+      navigate("/profile/yourorders?status=arriving");
+    } catch (err) {
+      toast.error("Error marking as delivered", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  const RepeatOrder = async () => {
+    console.log("clicked");
+    const uid = localStorage.getItem("uid");
+    try {
+      const currentDate = new Date();
+      const orderid = nanoid(10);
+      const neworder = {
+        deliveryaddress: order.deliveryaddress,
+        orderdetail: order.orderdetail,
+        orderbillamount: order.totalPrice,
+        ordertime: currentDate,
+        id: orderid,
+        totalPrice: order.totalPrice,
+        discount: order.discount,
+      };
+
+      await AddUserOrder(uid, neworder);
+      toast.success("Order placed succesfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+      navigate("/profile/yourorders?status=arriving");
+    } catch (err) {
+      toast.error("Error placing order", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
   useEffect(() => {
     Get_Order(orderid);
   }, [orderid]);
@@ -164,6 +236,20 @@ function Order() {
                   </tr>
                 </table>
               </div>
+            </div>
+            <div
+              className="buttondiv"
+              style={{ width: "90vw", display: "flex" }}
+            >
+              {status === "arriving" ? (
+                <button className="orderbutton" onClick={MarkDelivered}>
+                  Mark as Delivered
+                </button>
+              ) : (
+                <button className="orderbutton" onClick={RepeatOrder}>
+                  Repeat order
+                </button>
+              )}
             </div>
           </section>
         </div>

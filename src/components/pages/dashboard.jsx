@@ -51,7 +51,7 @@ function DashBoard() {
   }
 
   const click = (a) => {
-    navigate("/" + a);
+    navigate("/" + a + "?status=arriving");
   };
 
   return (

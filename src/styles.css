@@ -1033,6 +1033,39 @@ textarea::-webkit-scrollbar-track {
   justify-content: space-around;
   background-color: rgb(237, 237, 237);
 }
+.orderindicatortab {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  background-color: #f0f5f0;
+  box-shadow: 0 5px 5px rgba(118, 118, 118, 0.2);
+}
+.orderindicator :hover{
+  scale: 1.05;
+}
+.orderbutton {
+  background-color: #40c04b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+  margin: 0px 0px 10px 20px;
+}
+@media screen and (max-width: 500px){
+  .buttondiv{
+    display: flex;
+    justify-content: center;
+  }
+  .orderbutton{
+    margin: 10px;
+    position: relative;
+    bottom: 20px;
+  }
+}
 @media screen and (max-width: 900px) {
   .ordersdiv {
     display: flex;
@@ -1085,13 +1118,12 @@ textarea::-webkit-scrollbar-track {
   .orderdetailbtn {
     font-size: 11px;
     position: relative;
-    left:4px
+    left: 4px;
   }
   .orderid {
     font-size: 11px;
   }
-  .orderlink
-  {
+  .orderlink {
     height: 8px !important;
     width: 8px !important;
     margin: 0px;

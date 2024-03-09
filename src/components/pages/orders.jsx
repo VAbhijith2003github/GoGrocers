@@ -7,34 +7,75 @@ import arrow from "../../images/accmedia/arrow.png";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase-config.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const query = useQuery();
+
+  function useQuery() {
+    const { search } = useLocation();
+
+    return React.useMemo(() => new URLSearchParams(search), [search]);
+  }
+
   const navigate = useNavigate();
   const auth = getAuth(app);
   useEffect(() => {
     async function getorderdata() {
       const uid = localStorage.getItem("uid");
-      try {
-        const orderdata = await GetOrder(uid);
-        setOrders(orderdata.onorder);
-      } catch (err) {
-        toast.error("Error fetching user data", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        console.log(err);
+      console.log(query.get("name"));
+      if (query.get("status") === "arriving") {
+        document.querySelector("#arriving").style.backgroundColor = "#40c04b90";
+        document.querySelector("#arriving").style.color = "#ffffff";
+        document.querySelector("#arriving").style.fontWeight = "600";
+        document.querySelector("#completed").style.fontWeight = "300";
+        document.querySelector("#completed").style.color = "#000000";
+        document.querySelector("#completed").style.backgroundColor = "#f0f5f0";
+        try {
+          const orderdata = await GetOrder(uid);
+          setOrders(orderdata.onorder);
+        } catch (err) {
+          toast.error("Error fetching user data", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          console.log(err);
+        }
+      } else if (query.get("status") === "completed") {
+        document.querySelector("#completed").style.backgroundColor ="#40c04b90";
+        document.querySelector("#completed").style.color = "#ffffff";
+        document.querySelector("#arriving").style.fontWeight = "300";
+        document.querySelector("#completed").style.fontWeight = "600";
+        document.querySelector("#arriving").style.color = "#000000";
+        document.querySelector("#arriving").style.backgroundColor = "#f0f5f0";
+        try {
+          const orderdata = await GetOrder(uid);
+          setOrders(orderdata.completed);
+          console.log(orderdata.completed);
+        } catch (err) {
+          toast.error("Error fetching user data", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          console.log(err);
+        }
       }
     }
     getorderdata();
-  }, []);
+  }, [query]);
 
   onAuthStateChanged(auth, (user) => {
     if (user === null) {
@@ -77,25 +118,60 @@ function Orders() {
     <>
       <NavBar />
       <div className="orderindicator">
-        <span>Arriving</span>
-        <span>Past Orders</span>
+        <div
+          className="orderindicatortab"
+          id="arriving"
+          onClick={() => {
+            navigate("/profile/yourorders?status=arriving");
+          }}
+        >
+          <span>Arriving</span>
+        </div>
+        <div
+          className="orderindicatortab"
+          id="completed"
+          onClick={() => {
+            navigate("/profile/yourorders?status=completed");
+          }}
+        >
+          <span>Past Orders</span>
+        </div>
       </div>
       <div className="bannersec" id="dashboardsec">
         <div style={{ width: "100%" }} className="ordersdiv">
-          {orders.map((order, index) => (
-            <>
-              <div className="order">
-                <p className="orderid">Order&nbsp;id&nbsp;:&nbsp;{order.id}</p>
+          {orders.length === 0 ? (
+            <div
+              style={{
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <h1
+                style={{
+                  opacity: "50%",
+                  fontFamily: "sans-serif",
+                  fontWeight: "600",
+                }}
+              >
+                NO ORDERS
+              </h1>
+            </div>
+          ) : (
+            orders.map((order, index) => (
+              <div key={index} className="order">
+                <p className="orderid">Order id: {order.id}</p>
                 <br />
                 <div className="imageorderdiv">
                   {order.orderdetail.map((item, index) => (
-                    <>
-                      <img
-                        src={item.src}
-                        alt={item.name}
-                        className="imageorder"
-                      />
-                    </>
+                    <img
+                      key={index}
+                      src={item.src}
+                      alt={item.name}
+                      className="imageorder"
+                    />
                   ))}
                 </div>
                 <br />
@@ -131,8 +207,8 @@ function Orders() {
                   </p>
                 </div>
               </div>
-            </>
-          ))}
+            ))
+          )}
         </div>
         <ToastContainer
           position="top-center"
