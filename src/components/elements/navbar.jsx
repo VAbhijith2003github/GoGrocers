@@ -6,6 +6,7 @@ import search from "../../images/search.png";
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase-config.js";
+import { toast, ToastContainer } from "react-toastify";
 
 const Navbarcomp = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -15,6 +16,12 @@ const Navbarcomp = () => {
 
   useEffect(() => {
     onLoad();
+    document.getElementById("search").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSearchButton(e);
+      }
+    });
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -40,6 +47,25 @@ const Navbarcomp = () => {
     }
   }
 
+  async function handleSearchButton(e) {
+    e.preventDefault();
+    const search = document.getElementById("search").value;
+    if (search === "") {
+      toast.warning("Please enter a search query", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      window.location.href = `/search?name=${search}`;
+    }
+  }
+
   function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -55,13 +81,18 @@ const Navbarcomp = () => {
         <h1 className="navbrand">GoGrocers</h1>
       </Link>
       <Link id="searchbar">
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="search"
-          id="search"
-        />
-        <img src={search} alt="search icon" id="searchicon" />
+        <form onSubmit={handleSearchButton} id="searchform">
+          <input
+            autoComplete="off"
+            type="text"
+            className="search-bar"
+            placeholder="search"
+            id="search"
+          />
+          <button className="search-barbutton" type="submit">
+            <img src={search} alt="search icon" id="searchicon" />
+          </button>
+        </form>
       </Link>
       <Link to="/cart" className="navitem">
         <img src={cart} alt="cart" className="navicon" />
@@ -83,6 +114,18 @@ const Navbarcomp = () => {
       <Link className="icon" onClick={myFunction}>
         <i className="fa fa-bars"></i>
       </Link>
+      <ToastContainer
+        position="top-center"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

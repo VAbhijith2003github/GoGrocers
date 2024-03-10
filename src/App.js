@@ -22,6 +22,7 @@ import EditProfile from "./components/pages/editprofile";
 import UpdateCart from "./components/firestore.operations.files/updatecart.js";
 import Checkout from "./components/pages/checkout";
 import Orders from "./components/pages/orders";
+import Search from "./components/pages/search";
 import Order from "./components/pages/order";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase-config.js";
@@ -94,6 +95,7 @@ const App = () => {
             <Route path="/cleaningproducts" element={<Cleaningproducts />} />
             <Route path="/fruits" element={<Fruits />} />
             <Route path="/staples" element={<Staples />} />
+            <Route path="/search" element={<Search />} />
             {hasAccessToken && (
               <>
                 <Route path="/dashboard" element={<DashBoard />} />
