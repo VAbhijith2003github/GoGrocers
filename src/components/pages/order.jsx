@@ -17,6 +17,7 @@ function Order() {
   const navigate = useNavigate();
   const auth = getAuth(app);
   const [status, setStatus] = useState("arriving");
+  const [address, setaddress] = useState({});
 
   async function Get_Order(orderid) {
     const uid = localStorage.getItem("uid");
@@ -25,12 +26,14 @@ function Order() {
       for (let i of orderdata.onorder) {
         if (i.id === orderid) {
           setOrder(i);
+          setaddress(i.deliveryaddress);
         }
       }
       for (let i of orderdata.completed) {
         if (i.id === orderid) {
           setOrder(i);
           setStatus("completed");
+          setaddress(i.deliveryaddress);
         }
       }
     } catch (err) {
@@ -175,6 +178,18 @@ function Order() {
                 <tr>
                   <td>Order id:</td>
                   <td>{order.id}</td>
+                </tr>
+                <tr>
+                  <td>Order Address</td>
+                  <td>
+                    <p>
+                      {address.name}, {address.phonenumber}
+                      <br />
+                      {address.street}
+                      <br />
+                      {address.city}, {address.state}, {address.pincode}
+                    </p>
+                  </td>
                 </tr>
                 <tr>
                   <td>Bill Total:</td>
