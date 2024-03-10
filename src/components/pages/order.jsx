@@ -9,6 +9,7 @@ import { app } from "../../firebase-config.js";
 import { useNavigate } from "react-router-dom";
 import MarkOrderAsComplete from "../firestore.operations.files/markorderascomplete.js";
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 import AddUserOrder from "../firestore.operations.files/adduserorder";
 
 function Order() {
@@ -159,6 +160,10 @@ function Order() {
     }
   };
 
+  const handlePDF = async () => {
+    navigate(`/profile/yourorders/${order.id}`);
+  };
+
   return (
     <>
       <NavBar />
@@ -257,13 +262,22 @@ function Order() {
               style={{ width: "90vw", display: "flex" }}
             >
               {status === "arriving" ? (
-                <button className="orderbutton" onClick={MarkDelivered}>
-                  Mark as Delivered
-                </button>
+                <>
+                  <button className="orderbutton" onClick={MarkDelivered}>
+                    Mark as Delivered
+                  </button>
+                </>
               ) : (
-                <button className="orderbutton" onClick={RepeatOrder}>
-                  Repeat order
-                </button>
+                <>
+                  <Link to={`/profile/yourorders/view/${order.id}`}>
+                    <button className="orderbutton" onClick={handlePDF}>
+                      Download order receipt
+                    </button>
+                  </Link>
+                  <button className="orderbutton" onClick={RepeatOrder}>
+                    Repeat order
+                  </button>
+                </>
               )}
             </div>
           </section>

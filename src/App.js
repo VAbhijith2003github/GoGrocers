@@ -26,6 +26,7 @@ import Search from "./components/pages/search";
 import Order from "./components/pages/order";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase-config.js";
+import PDF from "./components/elements/pdf.jsx";
 export const MyContext = createContext();
 
 const App = () => {
@@ -106,6 +107,10 @@ const App = () => {
                 <Route
                   path="/profile/yourorders/:orderid"
                   element={<Order />}
+                />
+                <Route
+                  path="/profile/yourorders/view/:orderid"
+                  element={<PDF />}
                 />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
