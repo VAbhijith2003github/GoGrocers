@@ -60,24 +60,31 @@ function PDF() {
   useEffect(() => {
     Get_Order(orderid);
   }, []);
+
   const [pdfBlob, setPdfBlob] = useState(null);
   const generatePdf = async () => {
     try {
-      const pdfBlob = await pdf(<PDF />).toBlob();
+      const pdfBlob = await pdf(
+        <MyDocument
+          order={order}
+          address={address}
+          currentDate={currentDate}
+          formatOrderTime={formatOrderTime}
+        />
+      ).toBlob();
       setPdfBlob(pdfBlob);
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
   };
-  
 
-  const downloadPdf = () => {
+  const downloadPdf = async () => {
     generatePdf();
     if (pdfBlob) {
       const url = URL.createObjectURL(pdfBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `GoGrocers_Order_${order.id}.pdf`;
+      a.download = `GoGrocers_Order_${order.id || "Default"}.pdf`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -86,68 +93,71 @@ function PDF() {
 
   return (
     <>
-      <Document>
-        <Page style={styles.page}>
-          <Text style={styles.heading}>GoGrocers Order ID: {order.id}</Text>
-          <Text style={styles.date}>{formatOrderTime(currentDate)}</Text>
-          <br />
-          <img src={logo} alt="Logo" style={styles.logo} />
-          <br />
-          <View style={styles.mainsection}>
-            <Text>Order placed: {formatOrderTime(order.ordertime)}</Text>
-            <Text>Order placed: {order.id}</Text>
-            <Text>Order total: Rs {order.totalPrice}</Text>
-          </View>
-          <hr style={styles.line} />
-          <View style={styles.section}>
-            <Text style={styles.subheading}>ORDER DETAILS</Text>
-            <hr style={styles.line} />
-            {/* Add a table for order details */}
-            <View style={styles.table}>
-              {/* Add table headers */}
-              <View style={styles.tableRow}>
-                <View style={styles.tableCellheader}>Item</View>
-                <View style={styles.tableCellheader}>Quantity</View>
-                <View style={styles.tableCellheader}>Price</View>
-              </View>
-              {/* Add order details */}
-              {order.orderdetail.map((item, index) => (
-                <View style={styles.tableRow} key={index}>
-                  <View style={styles.tableCell}>{item.name}</View>
-                  <View style={styles.tableCell}>
-                    {item.frequency} units each {item.weight}
-                  </View>
-                  <View style={styles.tableCell}>
-                    ₹ {item.priceint * item.frequency} /-
-                  </View>
-                </View>
-              ))}
-            </View>
-            <hr style={styles.line} />
-            <View style={styles.mainsection}>
-              <Text>Delivery Address</Text>
-              <Text>
-                {address.name}, {address.phonenumber}
-              </Text>
-              <Text>{address.street}</Text>
-              <Text>
-                {address.city}, {address.state}
-              </Text>
-            </View>
-            <hr style={styles.line} />
-            <Text style={styles.subheading}>Payment Method : COD</Text>
-          </View>
-
-          {/* Add other sections of the PDF, like summary and total */}
-        </Page>
-      </Document>
-      <br />
-      {/* <button style={{ margin: "40px" }} onClick={downloadPdf}>
-        Download PDF
-      </button> */}
+      <MyDocument
+        order={order}
+        address={address}
+        currentDate={currentDate}
+        formatOrderTime={formatOrderTime}
+      />
+      <button onClick={downloadPdf}> click to download </button>
     </>
   );
 }
+
+const MyDocument = ({ order, address, currentDate, formatOrderTime }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View>
+        <Text style={styles.heading}>GoGrocers Order ID: {order.id}</Text>
+        <Text style={styles.date}>{formatOrderTime(currentDate)}</Text>
+        <br />
+        <img src={logo} alt="Logo" style={styles.logo} />
+        <br />
+      </View>
+      <View style={styles.mainsection}>
+        <Text>Order placed: {formatOrderTime(order.ordertime)}</Text>
+        <Text>Order placed: {order.id}</Text>
+        <Text>Order total: Rs {order.totalPrice}</Text>
+      </View>
+      <hr style={styles.line} />
+      <View style={styles.section}>
+        <Text style={styles.subheading}>ORDER DETAILS</Text>
+        <hr style={styles.line} />
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCellheader}>Item</Text>
+            <Text style={styles.tableCellheader}>Quantity</Text>
+            <Text style={styles.tableCellheader}>Price</Text>
+          </View>
+          {order.orderdetail.map((item, index) => (
+            <View style={styles.tableRow} key={index}>
+              <Text style={styles.tableCell}>{item.name}</Text>
+              <Text style={styles.tableCell}>
+                {item.frequency} units each {item.weight}
+              </Text>
+              <Text style={styles.tableCell}>
+                ₹ {item.priceint * item.frequency} /-
+              </Text>
+            </View>
+          ))}
+        </View>
+        <hr style={styles.line} />
+        <View style={styles.mainsection}>
+          <Text>Delivery Address</Text>
+          <Text>
+            {address.name}, {address.phonenumber}
+          </Text>
+          <Text>{address.street}</Text>
+          <Text>
+            {address.city}, {address.state}
+          </Text>
+        </View>
+        <hr style={styles.line} />
+        <Text style={styles.subheading}>Payment Method : COD</Text>
+      </View>
+    </Page>
+  </Document>
+);
 
 const styles = StyleSheet.create({
   page: {
@@ -155,49 +165,58 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   line: {
-    width: "90vw",
+    width: 90,
     alignSelf: "center",
-    height: "1px",
+    height: "1pt",
     backgroundColor: "black",
     opacity: "25%",
-    margin: "10px 0px 10px 40px",
+    marginBottom: 10,
+    marginLeft: 40,
+    marginTop: 10,
+    marginRight: 0,
   },
   logo: {
-    marginLeft: "50px",
-    marginTop: "20px",
-    width: "170px",
-    height: "50px",
-    marginBottom: "40px",
+    marginLeft: 50,
+    marginTop: 20,
+    width: 170,
+    height: 50,
+    marginBottom: 40,
   },
   mainsection: {
-    marginLeft: "40px",
+    marginLeft: 40,
     display: "flex",
     flexDirection: "column",
   },
   heading: {
     fontSize: 20,
-    fontWeight: "500",
+    fontWeight: 500,
     marginBottom: 10,
     position: "absolute",
-    top: "10px",
+    top: 10,
     left: "50%",
   },
   date: {
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: 500,
     marginBottom: 10,
     position: "absolute",
-    top: "10px",
-    left: "40px",
+    top: 10,
+    left: 40,
   },
   subheading: {
     fontSize: 15,
-    fontWeight: "500",
-    margin: "20px 0px 20px 40px",
+    fontWeight: 500,
+    marginBottom: 20,
+    marginLeft: 40,
+    marginTop: 20,
+    marginRight: 0
   },
   table: {
     width: "100%",
-    margin: "20px 0px 20px 40px",
+    marginBottom: 20,
+    marginLeft: 40,
+    marginTop: 20,
+    marginRight: 0,
     display: "flex",
     flexDirection: "column",
   },
@@ -210,15 +229,15 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
     height: 25,
-    width: "25vw",
+    width:25,
   },
   tableCellheader: {
     flex: 1,
     padding: 8,
     borderWidth: 1,
     height: 25,
-    width: "25vw",
-    fontWeight: "600",
+    width: 25,
+    fontWeight: 600,
   },
 });
 
