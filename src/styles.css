@@ -102,7 +102,7 @@ h5 {
 }
 .search-barbutton {
   padding: 5px 10px;
-  border-radius: 0px 10px 10px 0px;;
+  border-radius: 0px 10px 10px 0px;
   background-color: rgba(255, 255, 255, 0.462);
   font-family: "Montserrat", sans-serif;
   color: white !important;
@@ -573,6 +573,15 @@ h5 {
   }
   .checkoutbutton {
     margin-left: 20px;
+  }
+}
+.checkoutbutton :focus {
+  outline: none;
+  border: none;
+}
+@media print {
+  #downloadpdf {
+    display: none;
   }
 }
 .cartheading {

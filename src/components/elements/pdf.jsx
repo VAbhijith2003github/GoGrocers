@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import GetOrder from "../firestore.operations.files/getorder.js";
 import {
-  pdf,
   Page,
   Text,
   View,
@@ -59,36 +58,10 @@ function PDF() {
 
   useEffect(() => {
     Get_Order(orderid);
-  }, []);
-
-  const [pdfBlob, setPdfBlob] = useState(null);
-  const generatePdf = async () => {
-    try {
-      const pdfBlob = await pdf(
-        <MyDocument
-          order={order}
-          address={address}
-          currentDate={currentDate}
-          formatOrderTime={formatOrderTime}
-        />
-      ).toBlob();
-      setPdfBlob(pdfBlob);
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
-  };
+  }, [orderid]);
 
   const downloadPdf = async () => {
-    generatePdf();
-    if (pdfBlob) {
-      const url = URL.createObjectURL(pdfBlob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `GoGrocers_Order_${order.id || "Default"}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
+    window.print();
   };
 
   return (
@@ -99,7 +72,14 @@ function PDF() {
         currentDate={currentDate}
         formatOrderTime={formatOrderTime}
       />
-      <button onClick={downloadPdf}> click to download </button>
+      <button
+        onClick={downloadPdf}
+        className="checkoutbutton"
+        id="downloadpdf"
+      >
+        {" "}
+        click to download{" "}
+      </button>
     </>
   );
 }
@@ -209,7 +189,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 40,
     marginTop: 20,
-    marginRight: 0
+    marginRight: 0,
   },
   table: {
     width: "100%",
@@ -229,7 +209,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
     height: 25,
-    width:25,
+    width: 25,
   },
   tableCellheader: {
     flex: 1,
