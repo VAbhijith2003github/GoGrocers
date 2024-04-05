@@ -1,5 +1,4 @@
-# E-Commerce Application
-
+# GoGrocers
 ### [Live Site](https://gogrocers.vercel.app/)
 
 ![image](https://github.com/VAbhijith2003github/gogrocers/assets/119759593/f2e3a903-a421-4bf1-8b23-1fea58ca107b)
