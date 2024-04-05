@@ -1,4 +1,4 @@
-# E-Commerce Application - React frontend Application
+# E-Commerce Application
 
 ### [Live Site](https://gogrocers.vercel.app/)
 
